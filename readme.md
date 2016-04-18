@@ -11,7 +11,7 @@
 React is a library used to craft modern day UI and create views for a the front-end in web, client and native applications.
 * **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity, and readability.
 
-### Some History (10 / 10)
+### Some History
 The first thing most people hear about React is "Facebook uses it."
 * Went open source in May 2013.
 * Born out of Facebook's frustration with the traditional MVC model and how...
@@ -20,7 +20,7 @@ The first thing most people hear about React is "Facebook uses it."
 
 [Here's a taste of what React is all about.](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)  
 
-### React in the MVC (5 / 10)
+### React in the MVC
 
 How does React fit into the Javascript MVC model?
 * **React only concerns our "Views".**
@@ -220,7 +220,11 @@ Alright, enough setup - let's start building out a React component in `index.js`
 
 # Components
 
-## Hello World: A Very Basic Component (10 / 20)
+## You Do: Identifying Components
+
+> Insert exercise prompt.
+
+## Hello World: A Very Basic Component
 
 The basic unit you'll be working with in ReactJS is a **component**.
 * It sounds like a simple word, but using "components" is a pretty different way of approaching web development.
@@ -230,22 +234,14 @@ Throughout class we have separated HTML, CSS and Javascript.
 * With components, the lines between those three become a bit blurry.
 * Instead, we organize our web apps according to small, reusable components that define their own content, presentation and behavior.
 
-What does a component look like? Let's start with a simple "Hello World" example.
+What does a component look like? Let's start with a simple "Hello World" example...
 
 ```js
-<script type="text/jsx">
-  /** @jsx React.DOM */
+// Load React and React-DOM modules.
+var React = require("react");
+var ReactDOM = require("react-dom");
 
-</script>
-```
-
-Often times we write out React components in **JSX**.
-* JSX is an XML-like syntax for Javascript that allows us to write HTML-like syntax, which gets transformed to lightweight JavaScript objects.
-* React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
-
-> React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
-
-```js
+// React component definition.
 var Hello = React.createClass({
   render: function(){
     return (
@@ -254,6 +250,14 @@ var Hello = React.createClass({
   }
 })
 ```
+
+#### What's that HTML doing in my Javascript?
+
+Often times we write out React components in **JSX**.
+* JSX is an alternate Javascript syntax that allows us to write code that strongly resembles HTML. It is eventually compiled to lightweight JavaScript objects.
+* React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
+
+> React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
 
 1. `var Hello`
   * This is the component we're creating. In this example, we are creating a "Hello" component.
@@ -267,19 +271,21 @@ var Hello = React.createClass({
   * Generates a Virtual DOM node that will be added to the actual DOM.
     * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
 
-#### Virtual DOM
+#### Virtual DOM? How is that different from the usual DOM?
 
-Wait, a **Virtual DOM**? How is that different from the actual DOM.
-* The Virtual DOM is a Javascript representation of the actual DOM.
+The Virtual DOM is a Javascript representation of the actual DOM.
 * Because of that, React can keep track of changes in the actual DOM by comparing different instances of the Virtual DOM.
 * React then isolates the changes between old and new instances of the Virtual DOM and then only updates the actual DOM with the necessary changes.
 * By only making the "necessary changes," as opposed to re-rending an entire view altogether, we save up on processing power.
 
-> If you're interested in learning more about that Virtual DOM, [check this video out](https://www.youtube.com/watch?v=-DX3vJiqxm4).
+> If you're interested in learning more about the Virtual DOM, [check this video out](https://www.youtube.com/watch?v=-DX3vJiqxm4).
 
 So we've created the template for our component. But how do we actually render it?
 
 ```js
+var React = require("react");
+var ReactDOM = require("react-dom");
+
 var Hello = React.createClass({
   render: function(){
     return (
@@ -289,14 +295,13 @@ var Hello = React.createClass({
 })
 
 // Many tutorials will use React.renderComponent, which has been phased out. Change outlined here: http://bit.ly/1E81Whs
-React.render(
+ReactDOM.render(
   <Hello />,
-  document.getElementById( "container" )
+  document.getElementById( "app" )
 );
 ```
 
-`React.render` takes the Virtual DOM node created by `.createClass` and adds it to the actual DOM.
-* Takes two arguments...
+`React.render` takes the Virtual DOM node created by `.createClass` and adds it to the actual DOM. It takes two arguments...
   1. The component.
   2. The DOM element we want to append it to.
 
@@ -305,6 +310,8 @@ What language is `<Hello />` written in? **JSX.**
 * When we say `<Hello />`, in plain Javascript we are actually saying `React.DOM.div( null, "Hello world.")`
   * Basically, a string of React methods that create a virtual DOM node.
 
+> **NOTE:** Whenever you use a self-closing tag in JSX, you **MUST** end it with a `/` like `<Hello />` in the above example.
+
 ## Hello World: A Little Dynamic (10 / 30)
 
 Our `Hello` component isn't too helpful. Let's make it more interesting.
@@ -312,6 +319,9 @@ Our `Hello` component isn't too helpful. Let's make it more interesting.
 * How do we feed a name to our `Hello` component without hardcoding it into our render method?
 
 ```js
+var React = require("react");
+var ReactDOM = require("react-dom");
+
 var Hello = React.createClass({
   render: function(){
     return (
@@ -320,27 +330,26 @@ var Hello = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <Hello name="Tony" />,
-  document.getElementById( "container" )
+  document.getElementById( "app" )
 )
 ```
 
-In the above example, we replaced "world" with `{this.props.name}`  
+In the above example, we replaced "world" with `{this.props.name}`.
 
 What are `.props`?
 * Properties! Every component has a `.props` property.
 * Properties are immutable and cannot be changed while your program is running.
 * We define properties in development and pass them in as attributes to the JSX element in our `.render` method.
 
-We can create multiple properties for a component.
+We can create multiple properties for a component...
 
 ```js
+var React = require("react");
+var ReactDOM = require("react-dom");
+
 var Hello = React.createClass({
-
-  // render's return statement can only return one DOM element
-  // You can, however, place multiple elements within the parent DOM element
-
   render: function(){
     return (
       <div>
@@ -351,28 +360,28 @@ var Hello = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <Hello name="Tony" age="21" />,
-  document.getElementById( "container" )
+  document.getElementById( "app" )
 )
 ```
 
-## Exercise: A Blog Post (15 / 45)
+> **NOTE:** The return statement in `render` can only return one DOM element. You can, however, place multiple elements within a parent DOM element, like we do in the previous example with `<div>`.
+
+## Exercise: A Blog Post
 
 Let's have some practice creating a React component for scratch. How about a blog post?
-* Define a Post constructor that has the following properties:
-  1. title
-  2. author
-  3. body
-  4. comments
+* Define a Post constructor in `index.js` that has the below properties. Then use it to generate an instance of a Post with the content of your choosing.
+  1. `title`
+  2. `author`
+  3. `body`
+  4. `comments` (array of strings)
 * Render these properties using a Post component.
-* The HTML/CSS composition of your Post is up to you.
+* The HTML (or more accurately, JSX) composition of your Post is up to you.
 
-### Solution
+#### [Solution](https://gist.github.com/amaseda/efeb9d6ee266f8fa3178)
 
-[https://gist.github.com/amaseda/efeb9d6ee266f8fa3178](https://gist.github.com/amaseda/efeb9d6ee266f8fa3178)
-
-## Nested Components (5 / 50)
+## Nested Components
 
 What problems did you encounter when trying to add multiple comments to your Post?
 * It would be a pain to have to explicitly define every comment inside of `<PostView />`, especially if each comment itself had multiple properties.
@@ -390,22 +399,17 @@ We can nest Comment components within a PostView component
 2. Amend your `PostView`'s render method so that its return value generates three `<CommentView />` elements.
 * Make sure to pass in the comment body as an argument to each component.
 
-### Solution
-
-[https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a](https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a)
-
-## Break (10 / 70)
+#### [Solution](https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a)
 
 ## State (15 / 85)
 
-We already went over properties.
-* The thing about properties is, you can't change them.
+So we know about React properties. The thing about properties is, you can't change them!
 * What do we do about values that need to be changed after a component is rendered?
 * That's where **state** comes in.
 
 Values stored in a component's state are mutable attributes.
-* Like properties, we can access state values using `this.state.val`
-* Setting up and modifying state is not as straightforward as properties. Requires multiple methods
+* Like properties, we can access state values using `this.state.val`.
+* Setting up and modifying state is not as straightforward as properties. It requires multiple methods that we must define ourselves.
 
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
@@ -497,12 +501,14 @@ Let's create a state for our earlier blog example. We want to be able to edit th
 
 [https://gist.github.com/amaseda/0118e488caad10030e6d](https://gist.github.com/amaseda/0118e488caad10030e6d)
 
-## What's Next? (5 / 100)
+## What's Next?
 
+* [Router](https://github.com/reactjs/react-router)
+* [API/Axios](https://www.npmjs.com/package/axios)
 * [Events](https://facebook.github.io/react/tips/dom-event-listeners.html)
 * [Forms](https://facebook.github.io/react/docs/forms.html)
 
-## Questions / Closing (5 / 105)
+## Questions / Closing
 
 Having learned the basics of React, what are some benefits to using it vs. a different framework or plain ol' Javascript?
 * Clear HTML structure of rendered components.
