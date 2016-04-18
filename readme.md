@@ -29,13 +29,41 @@ How does React fit into the Javascript MVC model?
 * This means that React can also coexist with other Javascript frameworks.
   * Let them handle the models and controllers, and have React sort out the views.
 
-# Housekeeping
+# Initial Setup
 
-Clone [this repo](https://github.com/ga-dc/react-inclass).
+Clone [this repo](https://github.com/ga-dc/react-inclass) and run `npm install`.
 * Contains a simple Express server that we'll use in today's class.
-* We need to include some React script files: `react.js` and `JSXTransformer.js`
-  * Available as a download [here](http://facebook.github.io/react/downloads/react-0.11.2.zip).
-  * Or available via CDNs [here](https://cdnjs.com/libraries/react/).
+
+Now, we're going to install **A LOT** of stuff. Bear with us for a second and run the following command in the terminal...
+
+```bash
+$ npm install --save react react-dom && npm install --save-dev html-webpack-plugin webpack webpack-dev-server babel-{core,loader} babel-preset-react
+```
+
+Some of the terms here should look familiar. We'll go over everything in more detail as we encounter them in the code throughout this lesson.
+* **React:** The library itself.
+* **React-DOM:** An additional module that allows us to update the DOM using React components.
+* **Webpack:** You learned about this "code bundler" in your [Build Tools lesson](https://github.com/ga-wdi-lessons/build-tools).
+* **Babel:** This one's new. We'll be using Babel to compile an HTML-like syntax called JSX into Javascript.
+
+You'll know installation went swimmingly if your `package.json` file looks like this...
+
+```json
+"dependencies": {
+  "react": "^15.0.1",
+  "react-dom": "^15.0.1"
+},
+"devDependencies": {
+  "babel-core": "^6.7.6",
+  "babel-loader": "^6.2.4",
+  "babel-preset-react": "^6.5.0",
+  "html-webpack-plugin": "^2.15.0",
+  "webpack": "^1.13.0",
+  "webpack-dev-server": "^1.14.1"
+}
+```
+
+> **Q:** What's the difference between `devDependencies` and `dependencies`?  
 
 
 # Components
