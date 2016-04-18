@@ -8,18 +8,20 @@
 
 ## What is ReactJS?
 
+React is a library used to craft modern day UI and create views for a the front-end in web, client and native applications.
+* **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity, and readability.
+
 ### Some History (10 / 10)
 The first thing most people hear about React is "Facebook uses it."
-* Recently went open-source.
-* Born out of their frustration with the traditional MVC model and how.
+* Went open source in May 2013.
+* Born out of Facebook's frustration with the traditional MVC model and how...
   * Re-rendering something meant re-rendering everything (or just a lot).
   * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
-* So they found a creative way to tackle this that flips the Javascript MVC on its head and, in a way, shakes up everything you guys have learned about front-end web development in class so far.
 
 Here's a taste of what React is all about: [https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)  
 
 ### React in the MVC (5 / 10)
-This week you were introduced to the Javascript MVC model.
+How does React fit into the Javascript MVC model?
 * **React only concerns our "Views".**
   * What does "view" mean in Javascript? Compared to Rails?
   * Visual representations of our models - not the entire page.
@@ -42,12 +44,11 @@ Clone [this repo](https://github.com/ga-dc/react-inclass).
 
 The basic unit you'll be working with in ReactJS is a **component**.
 * It sounds like a simple word, but using "components" is a pretty different way of approaching web development.
+* Components can be thought of as functional elements that takes in data via `props` and a `state` -- more on those later -- and as a result produce a dynamic HTML template.
 
 Throughout class we have separated HTML, CSS and Javascript.
 * With components, the lines between those three become a bit blurry.
 * Instead, we organize our web apps according to small, reusable components that define their own content, presentation and behavior.
-* Basically, everything we need is condensed into a small capsule.
-* This'll become more clear as we start defining some components...
 
 What does a component look like? Let's start with a simple "Hello World" example.
 
@@ -58,13 +59,11 @@ What does a component look like? Let's start with a simple "Hello World" example
 </script>
 ```
 
-What is JSX?
-> JSX is a XML-like syntax extension to ECMAScript without any defined semantics.
+Often times we write out React components in **JSX**.
+* JSX is an XML-like syntax for Javascript that allows us to write HTML-like syntax, which gets transformed to lightweight JavaScript objects.
+* React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
 
-I'll explain JSX as we encounter it in our application.
-* Just know for now that...
-  * Our `script` tag needs a type of "text/jsx".
-  * The content of `script` must begin with this pseudo-comment: `/** @jsx React.DOM */`
+> React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
 
 ```js
 var Hello = React.createClass({
@@ -86,11 +85,17 @@ var Hello = React.createClass({
 3. `render`
   * Every component has, at minimum, a render method.
   * Generates a Virtual DOM node that will be added to the actual DOM.
-    * What does a Virtual DOM node sound like it does?
     * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
-    * Instead, it acts as a staging area for changes that will eventually be implemented.
-  * The contents of this node are defined in the method's return statement.
-    * At the moment, this return value looks exactly like HTML. But it's not...
+
+#### Virtual DOM
+
+Wait, a **Virtual DOM**? How is that different from the actual DOM.
+* The Virtual DOM is a Javascript representation of the actual DOM.
+* Because of that, React can keep track of changes in the actual DOM by comparing different instances of the Virtual DOM.
+* React then isolates the changes between old and new instances of the Virtual DOM and then only updates the actual DOM with the necessary changes.
+* By only making the "necessary changes," as opposed to re-rending an entire view altogether, we save up on processing power.
+
+> If you're interested in learning more about that Virtual DOM, [check this video out](https://www.youtube.com/watch?v=-DX3vJiqxm4).
 
 So we've created the template for our component. But how do we actually render it?
 
@@ -117,10 +122,8 @@ React.render(
 
 What language is `<Hello />` written in? **JSX.**
 * Similar to XML.
-* JSX is an alternate syntax for Javascript that helps us visualize what a Virtual DOM node will look like.
-  * React can actually be run without JSX.
-  * When we say `<Hello />`, in plain Javascript we are actually saying `React.DOM.div( null, "Hello world.")`
-    * Basically, a string of React methods that create a virtual DOM node.
+* When we say `<Hello />`, in plain Javascript we are actually saying `React.DOM.div( null, "Hello world.")`
+  * Basically, a string of React methods that create a virtual DOM node.
 
 ## Hello World: A Little Dynamic (10 / 30)
 
@@ -329,5 +332,7 @@ Having learned the basics of React, what are some benefits to using it vs. a dif
 
 ## Additional Reading
 
+* [Tyler McGinnis' React.js Program](http://www.reactjsprogram.com/)
+* [Raw React: No JSX, Webpack, ES6, etc.](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/)
 * [React DC (Meetup)](http://www.meetup.com/React-DC/)
 * [React Tic-Tac-Toe (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)
