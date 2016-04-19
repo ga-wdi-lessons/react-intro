@@ -1,4 +1,4 @@
-## Learning Objectives
+# Learning Objectives
 
 * Explain what ReactJS is.
 * Explain the component model of web development.
@@ -7,6 +7,7 @@
 * Nest React components.
 * Modify the `state` of a React component through events.
 
+# Framing (5 minutes / 0:05)
 ## What is ReactJS?
 
 React is a library used to craft modern day UI and create views for a the front-end in web, client and native applications.
@@ -38,7 +39,7 @@ React was born out of Facebook's frustration with the traditional MVC model and 
 React can be used agnostically throughout your stack. It's role is just to use data to render a UI.
 * This means that React can also coexist with other Javascript frameworks. Let them handle the models and controllers, and have React sort out the views.
 
-# Initial Setup
+# Initial Setup (20 minutes / 0:25)
 
 > **NOTE:** We're about to do a good amount of setup here. Don't worry if you fall behind - we will set aside time at the end of this section to get everybody caught up.  
 
@@ -250,11 +251,13 @@ $ npm run production
 * **`index_bundle.js`**: our app's minified Javascript code.
 * **`index.html`**: a new index file that will link to `index_bundle.js`
 
-### Stop / Catch Up (5 minutes)
+### Stop / Catch Up
 
 # Components
 
-## You Do: Identifying Components
+## You Do: Identifying Components (10 minutes / 0:35)
+
+> 5 minutes exercise. 5 minutes review.
 
 Break into pairs and take a look at CraigsList. Identify the visual "components" the website is comprised of. We suggest using markers to draw these out on your table! So something like this...
 
@@ -267,7 +270,9 @@ As you're drawing this out, think about the following questions...
 
 Take a picture of your work and Slack it to the classroom channel before the exercise is over.
 
-## Hello World: A Very Basic Component
+## I Do: Hello World - A Very Basic Component (10 minutes / 0:45)
+
+> No need to follow along with this Hello World example. You will have the chance to implement this yourself when you get to the first Blog exercise.
 
 The basic unit you'll be working with in ReactJS is a **component**.
 * It sounds like a simple word, but using "components" is a pretty different way of approaching web development.
@@ -362,7 +367,7 @@ What language is `<Hello />` written in? **JSX.**
 
 > **NOTE:** Whenever you use a self-closing tag in JSX, you **MUST** end it with a `/` like `<Hello />` in the above example.
 
-## Hello World: A Little Dynamic
+## Hello World: A Little Dynamic (10 minutes / 0:55)
 
 Our `Hello` component isn't too helpful. Let's make it more interesting.
 * Rather than simply display "Hello world", let's display a greeting to the user.
@@ -422,7 +427,11 @@ ReactDOM.render(
 
 > **NOTE:** The return statement in `render` can only return one DOM element. You can, however, place multiple elements within a parent DOM element, like we do in the previous example with `<div>`.
 
-## Exercise: A Blog Post
+## Break (10 minutes / 1:05)
+
+## Exercise: A Blog Post (20 minutes / 1:25)
+
+> 15 minutes exercise. 5 minutes review.
 
 Let's have some practice creating a React component for scratch. How about a blog post?
 * Create a `post` object literal in `index.js` that has the below properties.
@@ -435,7 +444,7 @@ Let's have some practice creating a React component for scratch. How about a blo
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/366d43703129418cf039429c27450ea5fe9f15e4)
 
-## Nested Components
+## Nested Components (5 minutes / 1:30)
 
 **Q:** What problems did you encounter when trying to add multiple comments to your Post?
 * It would be a pain to have to explicitly define every comment inside of `<PostView />`, especially if each comment itself had multiple properties.
@@ -461,7 +470,9 @@ var PostView = React.createClass(
 )
 ```
 
-## Exercise: Add Nested Comments To Blog
+## Exercise: Add Nested Comments To Blog (15 minutes / 1:45)
+
+> 10 minutes exercise. 5 minutes review.
 
 1. Create a `CommentView` component in the same way we did for `PostView`. Its `render` method should render a `commentBody` property.
 2. Amend your `PostView`'s render method so that its return value generates three `<CommentView />` elements. Make sure to pass in the comment body as an argument to each component.
@@ -474,7 +485,9 @@ var PostView = React.createClass(
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/00b2e4f9b63f5c71bd2b7e7a4e0f7daeab386e3b)
 
-## State
+## Break (10 minutes / 1:55)
+
+## State (10 minutes / 2:05)
 
 So we know about React properties, and how they relate to our component's data.
 * The thing is, `props` represent data that will be the same every time our component is rendered. What about data in our application that may change depending on user action?
@@ -567,7 +580,9 @@ Whenever we run `.setState`, our component "diff's" the current DOM, and compare
 * Only replaces the current DOM with parts that have changed.
 * This is super important! Using React, we only change parts of the DOM that need to be changed. This has strong implications on performance.
 
-## Exercise: Implement State
+## Exercise: Implement State (20 minutes / 2:25)
+
+> 15 minutes exercise. 5 minutes review.
 
 Let's implement `state` in our Blog by making `body` a mutable value.
 
@@ -580,20 +595,14 @@ Let's implement `state` in our Blog by making `body` a mutable value.
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/838eae89f77f3f7869c65747473c3912cb94a28a)
 
+# Closing (5 minutes / 2:30)
+
 ## What's Next?
 
 * [Router](https://github.com/reactjs/react-router)
 * [API/Axios](https://www.npmjs.com/package/axios)
 * [Events](https://facebook.github.io/react/tips/dom-event-listeners.html)
 * [Forms](https://facebook.github.io/react/docs/forms.html)
-
-## Questions / Closing
-
-Having learned the basics of React, what are some benefits to using it vs. a different framework or plain ol' Javascript?
-* Clear HTML structure of rendered components.
-* Nicely compartmentalized properties via props and state.
-* Easily pass in values from model to view.
-* Swift rendering of update state values.
 
 ## Additional Reading
 
