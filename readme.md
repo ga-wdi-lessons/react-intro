@@ -464,7 +464,11 @@ var PostView = React.createClass(
 1. Create a `CommentView` component in the same way we did for `PostView`. Its `render` method should render a `commentBody` property.
 2. Amend your `PostView`'s render method so that its return value generates three `<CommentView />` elements. Make sure to pass in the comment body as an argument to each component.
 
-> **NOTE:** You can use `.map` in `PostView`'s `render` method to avoid having to hard-code all your `CommentView`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/). **HINT:** You should only have to return one `<CommentView />` inside of `.map`.
+> **NOTE:** You can use `.map` in `PostView`'s `render` method to avoid having to hard-code all your `CommentView`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
+>
+> **HINT I:** You should only have to return one `<CommentView />` inside of `.map`.
+>
+> **HINT II:** If you're going to write pure Javascript inside of `.map`'s return statement, you need to surround it with single brackets (`{}`).
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/00b2e4f9b63f5c71bd2b7e7a4e0f7daeab386e3b)
 
