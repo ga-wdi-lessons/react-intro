@@ -234,7 +234,6 @@ $ npm run production
 
 ### Stop / Catch Up (5 minutes)
 
-
 # Components
 
 ## You Do: Identifying Components
@@ -276,17 +275,18 @@ Often times we write out React components in **JSX**.
 
 > React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
 
-1. `var Hello`
-  * This is the component we're creating. In this example, we are creating a "Hello" component.
+Let's break down the things we see here...
 
-2. `React.createClass`
-  * This is the React library method we use to create our component definition.
+##### `var Hello`
+This is the component we're creating. In this example, we are creating a "Hello" component.
+
+##### `React.createClass`
+This is the React library method we use to create our component definition.
   * Takes an object as an argument.
 
-3. `render`
-  * Every component has, at minimum, a render method.
-  * Generates a Virtual DOM node that will be added to the actual DOM.
-    * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
+##### `render`
+Every component has, at minimum, a render method. It generates a **Virtual DOM** node that will be added to the actual DOM.
+* Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
 
 #### Virtual DOM? How is that different from the usual DOM?
 
@@ -300,6 +300,8 @@ The Virtual DOM is a Javascript representation of the actual DOM.
 So we've created the template for our component. But how do we actually render it?
 
 ```js
+// app/index.js
+
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -311,12 +313,13 @@ var Hello = React.createClass({
   }
 })
 
-// Many tutorials will use React.renderComponent, which has been phased out. Change outlined here: http://bit.ly/1E81Whs
 ReactDOM.render(
   <Hello />,
   document.getElementById( "app" )
 );
 ```
+
+> Many tutorials will use React.renderComponent, which has been phased out. Change outlined here: http://bit.ly/1E81Whs
 
 `React.render` takes the Virtual DOM node created by `.createClass` and adds it to the actual DOM. It takes two arguments...
   1. The component.
@@ -329,13 +332,15 @@ What language is `<Hello />` written in? **JSX.**
 
 > **NOTE:** Whenever you use a self-closing tag in JSX, you **MUST** end it with a `/` like `<Hello />` in the above example.
 
-## Hello World: A Little Dynamic (10 / 30)
+## Hello World: A Little Dynamic
 
 Our `Hello` component isn't too helpful. Let's make it more interesting.
 * Rather than simply display "Hello world", let's display a greeting to the user.
-* How do we feed a name to our `Hello` component without hardcoding it into our render method?
+* So the question is, how do we feed a name to our `Hello` component without hardcoding it into our render method?
 
 ```js
+// app/index.js
+
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -355,14 +360,16 @@ ReactDOM.render(
 
 In the above example, we replaced "world" with `{this.props.name}`.
 
-What are `.props`?
-* Properties! Every component has a `.props` property.
+#### What are `.props`?
+Properties! Every component has a `.props` property.
 * Properties are immutable and cannot be changed while your program is running.
 * We define properties in development and pass them in as attributes to the JSX element in our `.render` method.
 
 We can create multiple properties for a component...
 
 ```js
+// app/index.js
+
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -400,21 +407,20 @@ Let's have some practice creating a React component for scratch. How about a blo
 
 ## Nested Components
 
-What problems did you encounter when trying to add multiple comments to your Post?
+**Q:** What problems did you encounter when trying to add multiple comments to your Post?
 * It would be a pain to have to explicitly define every comment inside of `<PostView />`, especially if each comment itself had multiple properties.
-* The solution? **Nested components**.
 
-We can nest Comment components within a PostView component
+We can nest Comment components within a PostView component.
 * We create these comments the same way we did with posts: `.createClass` and `.render`
 * Then we can reference a comment using `<Comment />` inside of PostView's render method.
 
 ## Exercise: Add Nested Comments To Blog
 
-1. Create a `CommentView` component in the same way we did for `PostView`.
-* Your `CommentView` render method should render a `commentBody` property.
+1. Create a `CommentView` component in the same way we did for `PostView`. Its `render` method should render a `commentBody` property.
 
 2. Amend your `PostView`'s render method so that its return value generates three `<CommentView />` elements.
-* Make sure to pass in the comment body as an argument to each component.
+
+> Make sure to pass in the comment body as an argument to each component.
 
 #### [Solution](https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a)
 
@@ -431,13 +437,14 @@ Values stored in a component's state are mutable attributes.
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
 ```js
+// app/index.js
+
 var Hello = React.createClass({
 
-  // We need to define the initial values of our state using `getInitialState`.
-  // It returns an object with the initial state values.
+  // Here we define the initial values of our state. `getInitialState` returns an object with the initial state values.
   getInitialState: function(){
     return {
-      // We are passing in a new `count` property, which we will initialize in `React.render`
+      // We have one state value: a counter. It's initial value happens to be the same as one of our `props`: `count`.
       counter: this.props.count
     }
   },
@@ -448,14 +455,14 @@ var Hello = React.createClass({
         <p>Hello { this.props.name }.</p>
         <p>You are { this.props.age } years old.</p>
 
-        // We can reference state values just like props using `this.state.val`
+        // We can reference state values just like props using `this.state.val`.
         <p>It is {this.state.date}</p>
       </div>
     );
   }
 });
 
-// NOTE: We initialize a count property below at 1.
+// This is where we define our `count` (not `counter` property).
 React.render(
   <Hello name="Tony" age="21" count="1"/>,
   document.getElementById( "container" )
@@ -464,7 +471,7 @@ React.render(
 
 Ok, we set an initial state. But how do we go about changing it?
 * We need to set up some sort of trigger event to change our counter.
-* How about a button? Where should we initialize it?
+* **Q:** Let's do that via a button click event -- where should we initialize it?
 
 ```js
 var Hello = React.createClass({
@@ -501,9 +508,7 @@ React.render(
 
 Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
-* This is super important! Using React, we only change parts of the DOM that need to be changed.
-  * Implications on performance.
-  * We **do not** re-render the entire component like we have been in class.
+* This is super important! Using React, we only change parts of the DOM that need to be changed. This has strong implications on performance.
 
 ## Exercise: Implement State
 
