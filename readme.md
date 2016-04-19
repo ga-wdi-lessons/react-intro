@@ -265,6 +265,8 @@ As you're drawing this out, think about the following questions...
 * Are there any components that share the same structure?
 * Of these similar components, what is different about them?
 
+Take a picture of your work and Slack it to the classroom channel before the exercise is over.
+
 ## Hello World: A Very Basic Component
 
 The basic unit you'll be working with in ReactJS is a **component**.
