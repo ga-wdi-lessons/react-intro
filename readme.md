@@ -24,28 +24,32 @@ React was born out of Facebook's frustration with the traditional MVC model and 
 
 > If you want to get a taste of what React's all about, [here's an introduction from React.js Conf 2015.](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)  
 
-### React in the MVC
+### React in MVC
 
-**React only concerns our "Views".**
+**React can be thought of as the "Views" layer.**
 
 <details>
-  <summary>What is a "view" mean in front-end Javascript?</summary>
+  <summary>What is the role of a "view" in a front-end Javascript application?</summary>
 
-  > Visual representations of our models - not the entire page.
+  > The visual template the user sees, populated with data from our models -- not the entire page.
 
 </details>
 
-React can coexist with Models and Controllers. The user can set those up however they see fit.
+React can be used agnostically throughout your stack. It's role is just to use data to render a UI.
 * This means that React can also coexist with other Javascript frameworks. Let them handle the models and controllers, and have React sort out the views.
 
 # Initial Setup
 
-> **NOTE:** We're about to go through a lot of set-up that may not make 100% sense after going through it once. Don't worry if you don't understand the "Why?" quite yet. You will get more practice with this during the second React lesson.
+> **NOTE:** We're about to do a good amount of setup here. Don't worry if you fall behind - we will set aside time at the end of this section to get everybody caught up.  
 
-Our example app for this lesson is going to be a very simple blog. Let's start by creating a directory for the app and initializing `npm`...
+In today's class we will be building a simple blog from scratch. By the end of the lesson, it will have one post with several comments.
+
+> If you're interested, the solution and commit history for the blog can be found [here](https://github.com/ga-wdi-exercises/simple-react-blog/commits/solution).
+
+Let's start by creating a directory for the app and initializing `npm`...
 
 ```bash
-$ mkdir wdi-weather && cd wdi-weather && npm init -y
+$ mkdir react-blog && cd react-blog && npm init -y
 ```
 
 > `npm init -y` accepts all the defaults that, without the flag, you would have to hit the return key to accept.
@@ -56,9 +60,11 @@ Now, we're going to install **A LOT** of stuff. Bear with us for a second and ru
 $ npm install --save react react-dom && npm install --save-dev html-webpack-plugin webpack webpack-dev-server babel-{core,loader} babel-preset-react
 ```
 
-You'll know installation went A-OK if your `package.json` file looks like this...
+You'll know installation went okay if your `package.json` file looks like something like this. You might have different versions...
 
-```json
+```js
+// package.json
+
 "dependencies": {
   "react": "^15.0.1",
   "react-dom": "^15.0.1"
@@ -73,13 +79,18 @@ You'll know installation went A-OK if your `package.json` file looks like this..
 }
 ```
 
-Some of the terms in here should look familiar. We'll go over everything in more detail as we encounter them in the code throughout this lesson.
+Let's take a look at the dependencies we just installed...
 * **React:** The library itself.
 * **React-DOM:** An additional module that allows us to update the DOM using React components.
-* **Webpack:** You learned about this "code bundler" in your [Build Tools lesson](https://github.com/ga-wdi-lessons/build-tools).
+* **Webpack:** You learned about this "code bundler" in your [Build Tools lesson](https://github.com/ga-wdi-lessons/build-tools#webpack-10-mins).
 * **Babel:** This one's actually new. We'll be using Babel to compile an HTML-like syntax called JSX into Javascript.
 
-> **Q:** What's the difference between `devDependencies` and `dependencies`?  
+<details>
+  <summary>What's the difference between `devDependencies` and `dependencies`?</summary>
+
+  > DevDependencies are only used in the development environment.
+
+</details>
 
 Let's continue building out the app skeleton...
 
@@ -97,8 +108,7 @@ Inside our `index.html` file, let's add some boilerplate html...
 <html>
   <head>
     <meta charset="utf-8">
-    <title>WDI Weather</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>React Blog</title>
   </head>
   <body>
     <div id="app"></div>
@@ -128,11 +138,18 @@ module.exports = {
 }
 ```
 
-There are things to we need to account for when defining our Webpack configuration...
-  1. **`entry`**: The location of the app's root javascript file (specifying the app's point of entry).
-  2. **`output`**: Where we want the bundled up output to go.
-  3. **`loaders`**: The specific transformations to apply to our code.
+<details>
+  <summary>What are 3 things we need to account for when defining our Webpack configuration?</summary>
+
+  > (1) **`entry`**: The location of the app's root javascript file (specifying the app's point of entry).
+  >  
+  > (2) **`output`**: Where we want the bundled up output to go.
+  >  
+  > (3) **`loaders`**: The specific transformations to apply to our code.
+
+</details>
 ​
+
 ```js
 // webpack.config.js​
 
@@ -216,6 +233,7 @@ In order to actually run webpack, let's define a script in `package.json` to tes
 // package.json
 
 "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1", // This should already be in there.
   "production": "webpack -p"
 }
 ```
@@ -238,13 +256,20 @@ $ npm run production
 
 ## You Do: Identifying Components
 
-> Insert exercise prompt.
+Break into pairs and take a look at CraigsList. Identify the visual "components" the website is comprised of. We suggest using markers to draw these out on your table! So something like this...
+
+![Component diagram](http://maketea.co.uk/images/2014-03-05-robust-web-apps-with-react-part-1/wireframe_deconstructed.png)
+
+As you're drawing this out, think about the following questions...
+* Where do you see "nested components"? Where do you not?
+* Are there any components that share the same structure?
+* Of these similar components, what is different about them?
 
 ## Hello World: A Very Basic Component
 
 The basic unit you'll be working with in ReactJS is a **component**.
 * It sounds like a simple word, but using "components" is a pretty different way of approaching web development.
-* Components can be thought of as functional elements that takes in data via `props` and a `state` -- more on those later -- and as a result produce a dynamic HTML template.
+* Components can be thought of as functional elements that takes in data via `props` and a `state` -- more on those later -- and as a result produce a dynamic UI.
 
 Throughout class we have separated HTML, CSS and Javascript.
 * With components, the lines between those three become a bit blurry.
@@ -293,7 +318,10 @@ Every component has, at minimum, a render method. It generates a **Virtual DOM**
 The Virtual DOM is a Javascript representation of the actual DOM.
 * Because of that, React can keep track of changes in the actual DOM by comparing different instances of the Virtual DOM.
 * React then isolates the changes between old and new instances of the Virtual DOM and then only updates the actual DOM with the necessary changes.
-* By only making the "necessary changes," as opposed to re-rending an entire view altogether, we save up on processing power.
+* By only making the "necessary changes," as opposed to re-rendering an entire view altogether, we save up on processing power.
+* This is not unlike Git, with which you compare the difference -- or `diff` -- between two commits.
+
+![Virtual DOM Diagram](https://docs.google.com/drawings/d/11ugBTwDkqn6p2n5Fkps1p3Elp8ZToIRzXzvM4LJMYaU/pub?w=543&h=229)
 
 > If you're interested in learning more about the Virtual DOM, [check this video out](https://www.youtube.com/watch?v=-DX3vJiqxm4).
 
@@ -321,7 +349,7 @@ ReactDOM.render(
 
 > Many tutorials will use React.renderComponent, which has been phased out. Change outlined here: http://bit.ly/1E81Whs
 
-`React.render` takes the Virtual DOM node created by `.createClass` and adds it to the actual DOM. It takes two arguments...
+`ReactDOM.render` takes the Virtual DOM node created by `.createClass` and adds it to the actual DOM. It takes two arguments...
   1. The component.
   2. The DOM element we want to append it to.
 
@@ -361,7 +389,7 @@ ReactDOM.render(
 In the above example, we replaced "world" with `{this.props.name}`.
 
 #### What are `.props`?
-Properties! Every component has a `.props` property.
+Properties! Every component has `.props`.
 * Properties are immutable and cannot be changed while your program is running.
 * We define properties in development and pass them in as attributes to the JSX element in our `.render` method.
 
@@ -395,7 +423,7 @@ ReactDOM.render(
 ## Exercise: A Blog Post
 
 Let's have some practice creating a React component for scratch. How about a blog post?
-* Define a Post constructor in `index.js` that has the below properties. Then use it to generate an instance of a Post with the content of your choosing.
+* Create a `post` object literal in `index.js` that has the below properties.
   1. `title`
   2. `author`
   3. `body`
@@ -409,6 +437,7 @@ Let's have some practice creating a React component for scratch. How about a blo
 
 **Q:** What problems did you encounter when trying to add multiple comments to your Post?
 * It would be a pain to have to explicitly define every comment inside of `<PostView />`, especially if each comment itself had multiple properties.
+* This problem is a tell tale sign that our separation of concerns is being stretched, and its time to break things into a new component.
 
 We can nest Comment components within a PostView component.
 * We create these comments the same way we did with posts: `.createClass` and `.render`
@@ -426,13 +455,13 @@ We can nest Comment components within a PostView component.
 
 ## State
 
-So we know about React properties. The thing about properties is, you can't change them!
-* What do we do about values that need to be changed after a component is rendered?
-* That's where **state** comes in.
+So we know about React properties, and how they relate to our component's data.
+* The thing is, `props` represent data that will be the same every time our component is rendered. What about data in our application that may change depending on user action?
+* That's where `state` comes in...
 
 Values stored in a component's state are mutable attributes.
 * Like properties, we can access state values using `this.state.val`.
-* Setting up and modifying state is not as straightforward as properties. It requires multiple methods that we must define ourselves.
+* Setting up and modifying state is not as straightforward as properties. It involves explicitly declaring the mutation, and then defining methods to define how to update our state....
 
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
@@ -444,8 +473,8 @@ var Hello = React.createClass({
   // Here we define the initial values of our state. `getInitialState` returns an object with the initial state values.
   getInitialState: function(){
     return {
-      // We have one state value: a counter. It's initial value happens to be the same as one of our `props`: `count`.
-      counter: this.props.count
+      // We have one state value: a counter.
+      counter: 0
     }
   },
 
@@ -456,22 +485,29 @@ var Hello = React.createClass({
         <p>You are { this.props.age } years old.</p>
 
         // We can reference state values just like props using `this.state.val`.
-        <p>It is {this.state.date}</p>
+        <p>We have counted up to {this.state.counter}.</p>
       </div>
     );
   }
 });
 
-// This is where we define our `count` (not `counter` property).
 React.render(
-  <Hello name="Tony" age="21" count="1"/>,
+  <Hello name="Tony" age="21" />,
   document.getElementById( "container" )
 )
 ```
 
 Ok, we set an initial state. But how do we go about changing it?
 * We need to set up some sort of trigger event to change our counter.
-* **Q:** Let's do that via a button click event -- where should we initialize it?
+
+<details>
+  <summary>
+    Let's do that via a button click event -- where should we initialize it?
+  </summary>
+
+  > In the return value of our PostView's `render` method.
+
+</details>
 
 ```js
 var Hello = React.createClass({
