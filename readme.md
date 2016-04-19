@@ -3,32 +3,40 @@
 * Explain what ReactJS is.
 * Explain the component model of web development.
 * Create and render React components in the browser.
+* Pass in data to a React component via `props`.
 * Nest React components.
-* Modify the state of a React component through events.
+* Modify the `state` of a React component through events.
 
 ## What is ReactJS?
 
 React is a library used to craft modern day UI and create views for a the front-end in web, client and native applications.
-* **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity, and readability.
+
+> **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity, and readability.
 
 ### Some History
 The first thing most people hear about React is "Facebook uses it."
+* First used by Facebook in 2011. Then Instagram in 2012.
 * Went open source in May 2013.
-* Born out of Facebook's frustration with the traditional MVC model and how...
+
+React was born out of Facebook's frustration with the traditional MVC model and how...
   * Re-rendering something meant re-rendering everything (or just a lot).
   * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
 
-[Here's a taste of what React is all about.](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)  
+> If you want to get a taste of what React's all about, [here's an introduction from React.js Conf 2015.](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)  
 
 ### React in the MVC
 
-How does React fit into the Javascript MVC model?
-* **React only concerns our "Views".**
-  * What does "view" mean in Javascript? Compared to Rails?
-  * Visual representations of our models - not the entire page.
-* React can coexist with Models and Controllers. The user can set those up however they see fit.
-* This means that React can also coexist with other Javascript frameworks.
-  * Let them handle the models and controllers, and have React sort out the views.
+**React only concerns our "Views".**
+
+<details>
+  <summary>What is a "view" mean in front-end Javascript?</summary>
+
+  > Visual representations of our models - not the entire page.
+
+</details>
+
+React can coexist with Models and Controllers. The user can set those up however they see fit.
+* This means that React can also coexist with other Javascript frameworks. Let them handle the models and controllers, and have React sort out the views.
 
 # Initial Setup
 
@@ -83,6 +91,8 @@ $ touch app/index.html app/index.js
 Inside our `index.html` file, let's add some boilerplate html...
 ​
 ```html
+<!-- app/index.html -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -111,22 +121,21 @@ $ touch webpack.config.js
 In that file, go ahead a define an initial object to export...
 ​
 ```js
+// webpack.config.js
+
 module.exports = {
 ​
 }
 ```
-​
-**Q**. What three things to we need to account for when defining our Webpack configuration?
-​
----
-​
-In this file, we need to define...
+
+There are things to we need to account for when defining our Webpack configuration...
   1. **`entry`**: The location of the app's root javascript file (specifying the app's point of entry).
   2. **`output`**: Where we want the bundled up output to go.
   3. **`loaders`**: The specific transformations to apply to our code.
 ​
 ```js
-​
+// webpack.config.js​
+
 module.exports = {
   // What file to feed into webpack
   entry: [
@@ -149,8 +158,8 @@ module.exports = {
   }
 }
 ```
-​
-Next we need to setup Babel to specify which transformations should be run by the loader. In our app's root directory, we need to create a babel configuration file...
+
+​Next we need to setup Babel to specify which transformations should be run by the loader. In our app's root directory, we need to create a babel configuration file...
 ​
 ```bash
 $ touch .babelrc
@@ -158,19 +167,23 @@ $ touch .babelrc
 ​
 Inside `.babelrc`...
 ​
-```json
+```js
+// .babelrc
+
 {
   "presets": [
     "react"
   ]
 }
 ```
-​
-Everything inside the `presets` array will be the specific transformations applied by Babel. For right now, we are only adding the `react` preset, which will convert our JSX code into regular Javascript.
-​
-Another thing we have to do, is configure webpack to produce an `html` file that loads our bundled code. At the top of `webpack.config.js`, let's utilize `html-webpack-plugin`...
+
+​Everything inside the `presets` array will be the specific transformations applied by Babel. For now, however, we are only adding the `react` preset, which will convert our JSX code into regular Javascript.  
+
+Another thing we have to do is configure webpack to produce an `html` file that loads our bundled code. At the top of `webpack.config.js`, let's utilize `html-webpack-plugin`...
 ​
 ```js
+// webpack.config.js
+
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlWebPackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + "/app/index.html",
@@ -182,40 +195,44 @@ var HtmlWebPackPluginConfig = new HtmlWebpackPlugin({
 Now we can go ahead and add that as a plugin in our webpack config...
 ​
 ```js
+// webpack.config.js
+
   // Add this code after `module: {...}`
   plugins: [
      HtmlWebPackPluginConfig
   ]
 }
 ```
-​
-Essentially, we are using `html-webpack-plugin` to look into our `app/` directory and copy the contents of `index.html` there so that we can be sure to create another `index.html` in the `dist/` directory. This will be the file that is loading in our bundled code and the one we will be serving our app from. Webpack will automatically sync the files after every change.
 
-> What is `dist`? It hasn't been mentioned in the lesson plan yet.
+​We're using `html-webpack-plugin` to look into our `app/` directory and copy the contents of `index.html` there so that we can be sure to create another `index.html` in the `dist/` directory.
 
-​
-**Q**. To recap, how you would you summarize the Webpack's process of code transformation and bundling?
-​
----
-​
+This new `index.html` be the file that is loading in our bundled code and the one we will be serving our app from. Webpack will automatically sync the files after every change.
+
+> `dist/` is the directory that will store all of our "bundled" code.​
+
 In order to actually run webpack, let's define a script in `package.json` to test our app's configuration...
 ​
-```json
-...
+```js
+// package.json
+
 "scripts": {
   "production": "webpack -p"
 }
 ```
-​
-Now from the command line, we can run a script that will launch Webpack and start the bundling...
+
+> There should already be a `scripts` object in `package.json`. Add this new key-value pair to that.
+
+​Now from the command line, we can run a script that will launch Webpack and start the bundling...
 ​
 ```bash
 $ npm run production
 ```
-​
-If this command executes without any errors, it will create a new directory `dist`. In that directory, we will find a `index_bundle.js` file, which is our app's minified code. There will also be a new `index.html` file, which will link to `index_bundle.js`
-​
-Alright, enough setup - let's start building out a React component in `index.js`!
+
+​If this command executes without any errors, it will create a new directory `dist`. In that directory, we will find...
+* **`index_bundle.js`**: our app's minified Javascript code.
+* **`index.html`**: a new index file that will link to `index_bundle.js`
+
+### Stop / Catch Up (5 minutes)
 
 
 # Components
@@ -391,7 +408,7 @@ We can nest Comment components within a PostView component
 * We create these comments the same way we did with posts: `.createClass` and `.render`
 * Then we can reference a comment using `<Comment />` inside of PostView's render method.
 
-## Exercise: Add Nested Comments To Blog (10 / 60)
+## Exercise: Add Nested Comments To Blog
 
 1. Create a `CommentView` component in the same way we did for `PostView`.
 * Your `CommentView` render method should render a `commentBody` property.
@@ -401,7 +418,7 @@ We can nest Comment components within a PostView component
 
 #### [Solution](https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a)
 
-## State (15 / 85)
+## State
 
 So we know about React properties. The thing about properties is, you can't change them!
 * What do we do about values that need to be changed after a component is rendered?
@@ -488,7 +505,7 @@ Whenever we run `.setState`, our component "diff's" the current DOM, and compare
   * Implications on performance.
   * We **do not** re-render the entire component like we have been in class.
 
-## Exercise: Implement State (10 / 95)
+## Exercise: Implement State
 
 Let's create a state for our earlier blog example. We want to be able to edit the body of our post.
 
