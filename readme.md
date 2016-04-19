@@ -548,12 +548,14 @@ Whenever we run `.setState`, our component "diff's" the current DOM, and compare
 
 ## Exercise: Implement State
 
-Let's create a state for our earlier blog example. We want to be able to edit the body of our post.
+Let's implement `state` in our Blog by making `body` a mutable value.
 
-1. Initialize a state for our PostView. It should save a value for post body.
-2. Create a method inside your PostView component definition that sets state to a new value.
-  * Keep it simple: have your method generate a prompt through which you can create a new PostView body.
-3. Create a button that triggers the above function.
+1. Initialize a state using `.getInitialState` for our `PostView`. It should create a state value called `body`. Set it to the `body` of your hard-coded `post`.
+2. Modify `PostView`'s `render` method so that `body` comes from `state`, not `props`.
+3. Create an `editPost` method inside `PostView` that updates `body` based on a user input.
+  * You should use `setState` somewhere in this method.
+  * How can you get a user input? Keep it simple and start with `prompt`.
+4. Add a button to `PostView`'s `render` method that triggers `editPost`.
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/838eae89f77f3f7869c65747473c3912cb94a28a)
 
@@ -576,5 +578,6 @@ Having learned the basics of React, what are some benefits to using it vs. a dif
 
 * [Tyler McGinnis' React.js Program](http://www.reactjsprogram.com/)
 * [Raw React: No JSX, Webpack, ES6, etc.](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/)
+* [Integrating React with Backbone](https://blog.engineyard.com/2015/integrating-react-with-backbone)
 * [React DC (Meetup)](http://www.meetup.com/React-DC/)
 * [React Tic-Tac-Toe (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)
