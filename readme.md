@@ -403,7 +403,7 @@ Let's have some practice creating a React component for scratch. How about a blo
 * Render these properties using a Post component.
 * The HTML (or more accurately, JSX) composition of your Post is up to you.
 
-#### [Solution](https://gist.github.com/amaseda/efeb9d6ee266f8fa3178)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/366d43703129418cf039429c27450ea5fe9f15e4)
 
 ## Nested Components
 
@@ -422,7 +422,7 @@ We can nest Comment components within a PostView component.
 
 > Make sure to pass in the comment body as an argument to each component.
 
-#### [Solution](https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/00b2e4f9b63f5c71bd2b7e7a4e0f7daeab386e3b)
 
 ## State
 
@@ -519,9 +519,7 @@ Let's create a state for our earlier blog example. We want to be able to edit th
   * Keep it simple: have your method generate a prompt through which you can create a new PostView body.
 3. Create a button that triggers the above function.
 
-### Solution
-
-[https://gist.github.com/amaseda/0118e488caad10030e6d](https://gist.github.com/amaseda/0118e488caad10030e6d)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/838eae89f77f3f7869c65747473c3912cb94a28a)
 
 ## What's Next?
 
