@@ -490,7 +490,7 @@ var Post = React.createClass(
 > 10 minutes exercise. 5 minutes review.
 
 1. Create a `Comment` component in the same way we did for `Post`. Its `render` method should render a `commentBody` property.
-2. Amend your `Post`'s render method so that its return value generates three `<Comment />` elements. Make sure to pass in the comment body as an argument to each component.
+2. Amend your `Post`'s render method so that its return value generates multiple `<Comment />` elements. Make sure to pass in the comment body as an argument to each component.
 
 > **NOTE:** You can use `.map` in `Post`'s `render` method to avoid having to hard-code all your `Comment`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
 >
