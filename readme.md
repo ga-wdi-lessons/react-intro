@@ -2,7 +2,7 @@
 
 ---
 
-![react-logo](./images/react-logo.png)
+![react-logo](./images/react-white-logo.png)
 
 ---
 
