@@ -118,7 +118,7 @@ Inside our `index.html` file, let's add some boilerplate html...
 </html>
 ```
 
-> Here we're (1) linking to the Bootstrap CDN and (2) creating a `div` with an id of `app`, which is the DOM element to which we'll be attaching our React application later on.
+> Here we're creating a `div` with an id of `app`, which is the DOM element to which we'll be attaching our React application later on.
 
 ### Webpack
 ​
@@ -198,7 +198,7 @@ Inside `.babelrc`...
 
 ​Everything inside the `presets` array will be the specific transformations applied by Babel. For now, however, we are only adding the `react` preset, which will convert our JSX code into regular Javascript.  
 
-Another thing we have to do is configure webpack to produce an `html` file that loads our bundled code. At the top of `webpack.config.js`, let's utilize `html-webpack-plugin`...
+Another thing we have to do is configure Webpack to produce an `html` file that loads our bundled code. At the top of `webpack.config.js`, let's utilize `html-webpack-plugin`...
 ​
 ```js
 // webpack.config.js
@@ -211,7 +211,7 @@ var HtmlWebPackPluginConfig = new HtmlWebpackPlugin({
 });
 ```
 
-Now we can go ahead and add that as a plugin in our webpack config...
+Now we can go ahead and add that as a plugin in our Webpack config...
 ​
 ```js
 // webpack.config.js
@@ -229,7 +229,7 @@ This new `index.html` be the file that is loading in our bundled code and the on
 
 > `dist/` is the directory that will store all of our "bundled" code.​
 
-In order to actually run webpack, let's define a script in `package.json` to test our app's configuration...
+In order to actually run Webpack, let's define a script in `package.json` to test our app's configuration...
 ​
 ```js
 // package.json
