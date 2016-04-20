@@ -252,6 +252,20 @@ $ npm run production
 * **`index_bundle.js`**: our app's minified Javascript code.
 * **`index.html`**: a new index file that will link to `index_bundle.js`
 
+One final thing: in order to actually run our code we'll need to spin a local server using `webpack-dev-server`. We can create a terminal command for this by adding another script to `package.json`...
+
+```js
+// package.json
+
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1", // This should already be in there.
+  "production": "webpack -p",
+  "start": "webpack-dev-server"
+}
+```
+
+Now we can run `npm run start` from the Terminal and visit our application at `http://localhost:8080`.
+
 ### Stop / Catch Up
 
 # Components
