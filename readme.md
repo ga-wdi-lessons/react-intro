@@ -8,9 +8,10 @@
 * Modify the `state` of a React component through events.
 
 # Framing (5 minutes / 0:05)
+
 ## What is ReactJS?
 
-React is a library used to craft modern day UI and create views for a the front-end in web, client and native applications.
+React is a library used to craft modern day UI and create views for the front-end in web, client and native applications.
 
 > **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity, and readability.
 
