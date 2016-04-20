@@ -457,7 +457,7 @@ Let's have some practice creating a React component for scratch. How about a blo
 * Render these properties using a Post component.
 * The HTML (or more accurately, JSX) composition of your Post is up to you.
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/366d43703129418cf039429c27450ea5fe9f15e4)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/0e66a58ad0e34c273261a515ef4d71c8644b03d0)
 
 ## Nested Components (5 minutes / 1:30)
 
@@ -498,7 +498,7 @@ var PostView = React.createClass(
 >
 > **HINT II:** If you're going to write pure Javascript inside of `.map`'s return statement, you need to surround it with single brackets (`{}`).
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/00b2e4f9b63f5c71bd2b7e7a4e0f7daeab386e3b)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/a56bb927bd0f46234625391efab240fab04f6eab)
 
 ## Break (10 minutes / 1:55)
 
@@ -608,7 +608,7 @@ Let's implement `state` in our Blog by making `body` a mutable value.
   * How can you get a user input? Keep it simple and start with `prompt`.
 4. Add a button to `PostView`'s `render` method that triggers `editPost`.
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/838eae89f77f3f7869c65747473c3912cb94a28a)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/3dce65c782f3a20fb553af19e4357c0924034237)
 
 # Closing (5 minutes / 2:30)
 
