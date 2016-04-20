@@ -462,24 +462,24 @@ Let's have some practice creating a React component for scratch. How about a blo
 ## Nested Components (5 minutes / 1:30)
 
 **Q:** What problems did you encounter when trying to add multiple comments to your Post?
-* It would be a pain to have to explicitly define every comment inside of `<PostView />`, especially if each comment itself had multiple properties.
+* It would be a pain to have to explicitly define every comment inside of `<Post />`, especially if each comment itself had multiple properties.
 * This problem is a tell tale sign that our separation of concerns is being stretched, and its time to break things into a new component.
 
-We can nest Comment components within a PostView component.
+We can nest Comment components within a Post component.
 * We create these comments the same way we did with posts: `.createClass` and `.render`
-* Then we can reference a comment using `<Comment />` inside of PostView's render method.
+* Then we can reference a comment using `<Comment />` inside of Post's render method.
 
 A nested component looks something like this. You're going to take a stab at setting them up in the next exercise...
 
 ```js
-var PostView = React.createClass(
+var Post = React.createClass(
   render: function(){
     <div>
       <h2>{this.props.title}</h2>
       <p>By {this.props.author}</p>
       <p>{this.props.body}</p>
       <h3>Comments</h3>
-      <CommentView body={this.props.comment} />
+      <Comment body={this.props.comment} />
     </div>
   }
 )
@@ -489,12 +489,12 @@ var PostView = React.createClass(
 
 > 10 minutes exercise. 5 minutes review.
 
-1. Create a `CommentView` component in the same way we did for `PostView`. Its `render` method should render a `commentBody` property.
-2. Amend your `PostView`'s render method so that its return value generates three `<CommentView />` elements. Make sure to pass in the comment body as an argument to each component.
+1. Create a `Comment` component in the same way we did for `Post`. Its `render` method should render a `commentBody` property.
+2. Amend your `Post`'s render method so that its return value generates three `<Comment />` elements. Make sure to pass in the comment body as an argument to each component.
 
-> **NOTE:** You can use `.map` in `PostView`'s `render` method to avoid having to hard-code all your `CommentView`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
+> **NOTE:** You can use `.map` in `Post`'s `render` method to avoid having to hard-code all your `Comment`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
 >
-> **HINT I:** You should only have to return one `<CommentView />` inside of `.map`.
+> **HINT I:** You should only have to return one `<Comment />` inside of `.map`.
 >
 > **HINT II:** If you're going to write pure Javascript inside of `.map`'s return statement, you need to surround it with single brackets (`{}`).
 
@@ -554,7 +554,7 @@ Ok, we set an initial state. But how do we go about changing it?
     Let's do that via a button click event -- where should we initialize it?
   </summary>
 
-  > In the return value of our PostView's `render` method.
+  > In the return value of our Post's `render` method.
 
 </details>
 
@@ -601,12 +601,12 @@ Whenever we run `.setState`, our component "diff's" the current DOM, and compare
 
 Let's implement `state` in our Blog by making `body` a mutable value.
 
-1. Initialize a state using `.getInitialState` for our `PostView`. It should create a state value called `body`. Set it to the `body` of your hard-coded `post`.
-2. Modify `PostView`'s `render` method so that `body` comes from `state`, not `props`.
-3. Create an `editPost` method inside `PostView` that updates `body` based on a user input.
+1. Initialize a state using `.getInitialState` for our `Post`. It should create a state value called `body`. Set it to the `body` of your hard-coded `post`.
+2. Modify `Post`'s `render` method so that `body` comes from `state`, not `props`.
+3. Create an `editPost` method inside `Post` that updates `body` based on a user input.
   * You should use `setState` somewhere in this method.
   * How can you get a user input? Keep it simple and start with `prompt`.
-4. Add a button to `PostView`'s `render` method that triggers `editPost`.
+4. Add a button to `Post`'s `render` method that triggers `editPost`.
 
 #### Bonus I
 
