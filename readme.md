@@ -85,7 +85,7 @@ Let's take a look at the dependencies we just installed...
 * **React:** The library itself.
 * **React-DOM:** An additional module that allows us to update the DOM using React components.
 * **Webpack:** You learned about this "code bundler" in your [Build Tools lesson](https://github.com/ga-wdi-lessons/build-tools#webpack-10-mins).
-* **Babel:** This one's actually new. We'll be using Babel to compile an HTML-like syntax called JSX into Javascript.
+* **Babel:** This one's actually new. We'll be using Babel to transpile an HTML-like syntax called JSX into Javascript.
 
 <details>
   <summary>What's the difference between `devDependencies` and `dependencies`?</summary>
@@ -317,7 +317,7 @@ var Hello = React.createClass({
 #### What's that HTML doing in my Javascript?
 
 Often times we write out React components in **JSX**.
-* JSX is an alternate Javascript syntax that allows us to write code that strongly resembles HTML. It is eventually compiled to lightweight JavaScript objects.
+* JSX is an alternate Javascript syntax that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
 * React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
 
 > React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
@@ -496,7 +496,7 @@ var Post = React.createClass(
 >
 > **HINT I:** You should only have to return one `<Comment />` inside of `.map`.
 >
-> **HINT II:** If you're going to write pure Javascript inside of `.map`'s return statement, you need to surround it with single brackets (`{}`).
+> **HINT II:** Remember that whenever you write vanilla Javascript inside of JSX, you need to surround it with single brackets (`{}`).
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/ff48fdd6d4faae58d7b3e287edce542371b18205)
 
