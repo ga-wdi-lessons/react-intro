@@ -1,4 +1,12 @@
-# Learning Objectives
+# Intro to React.js
+
+---
+
+![react-logo](./images/react-logo.png)
+
+---
+
+## Learning Objectives
 
 * Explain what ReactJS is.
 * Explain the component model of web development.
@@ -7,15 +15,18 @@
 * Nest React components.
 * Modify the `state` of a React component through events.
 
-# Framing (5 minutes / 0:05)
+---
 
-## What is ReactJS?
+## Framing (5 minutes / 0:05)
+
+### What is ReactJS?
 
 React is a library used to craft modern day UI and create views for the front-end in web, client and native applications.
 
 > **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity, and readability.
 
-### Some History
+#### Some History
+
 The first thing most people hear about React is "Facebook uses it."
 * First used by Facebook in 2011. Then Instagram in 2012.
 * Went open source in May 2013.
@@ -40,7 +51,9 @@ React was born out of Facebook's frustration with the traditional MVC model and 
 React can be used agnostically throughout your stack. It's role is just to use data to render a UI.
 * This means that React can also coexist with other Javascript frameworks. Let them handle the models and controllers, and have React sort out the views.
 
-# Initial Setup (20 minutes / 0:25)
+---
+
+## Initial Setup (20 minutes / 0:25)
 
 > **NOTE:** We're about to do a good amount of setup here. Don't worry if you fall behind - we will set aside time at the end of this section to get everybody caught up.  
 
@@ -151,7 +164,6 @@ module.exports = {
 
 </details>
 ​
-
 ```js
 // webpack.config.js​
 
@@ -266,11 +278,15 @@ One final thing: in order to actually run our code we'll need to spin a local se
 
 Now we can run `npm run start` from the Terminal and visit our application at `http://localhost:8080`.
 
+---
+
 ### Stop / Catch Up
 
-# Components
+---
 
-## You Do: Identifying Components (10 minutes / 0:35)
+## Components
+
+### You Do: Identifying Components (10 minutes / 0:35)
 
 > 5 minutes exercise. 5 minutes review.
 
@@ -285,7 +301,9 @@ As you're drawing this out, think about the following questions...
 
 Take a picture of your work and Slack it to the classroom channel before the exercise is over.
 
-## I Do: Hello World - A Very Basic Component (10 minutes / 0:45)
+---
+
+### I Do: Hello World - A Very Basic Component (10 minutes / 0:45)
 
 > No need to follow along with this Hello World example. You will have the chance to implement this yourself when you get to the first Blog exercise.
 
@@ -335,9 +353,10 @@ This is the React library method we use to create our component definition.
 Every component has, at minimum, a render method. It generates a **Virtual DOM** node that will be added to the actual DOM.
 * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
 
-#### Virtual DOM? How is that different from the usual DOM?
+**Virtual DOM? How is that different from the usual DOM?**
 
 The Virtual DOM is a Javascript representation of the actual DOM.
+
 * Because of that, React can keep track of changes in the actual DOM by comparing different instances of the Virtual DOM.
 * React then isolates the changes between old and new instances of the Virtual DOM and then only updates the actual DOM with the necessary changes.
 * By only making the "necessary changes," as opposed to re-rendering an entire view altogether, we save up on processing power.
@@ -382,7 +401,9 @@ What language is `<Hello />` written in? **JSX.**
 
 > **NOTE:** Whenever you use a self-closing tag in JSX, you **MUST** end it with a `/` like `<Hello />` in the above example.
 
-## Hello World: A Little Dynamic (10 minutes / 0:55)
+---
+
+### Hello World: A Little Dynamic (10 minutes / 0:55)
 
 Our `Hello` component isn't too helpful. Let's make it more interesting.
 * Rather than simply display "Hello world", let's display a greeting to the user.
@@ -411,6 +432,7 @@ ReactDOM.render(
 In the above example, we replaced "world" with `{this.props.name}`.
 
 #### What are `.props`?
+
 Properties! Every component has `.props`.
 * Properties are immutable and cannot be changed while your program is running.
 * We define properties in development and pass them in as attributes to the JSX element in our `.render` method.
@@ -442,9 +464,13 @@ ReactDOM.render(
 
 > **NOTE:** The return statement in `render` can only return one DOM element. You can, however, place multiple elements within a parent DOM element, like we do in the previous example with `<div>`.
 
+---
+
 ## Break (10 minutes / 1:05)
 
-## Exercise: A Blog Post (20 minutes / 1:25)
+---
+
+### Exercise: A Blog Post (20 minutes / 1:25)
 
 > 15 minutes exercise. 5 minutes review.
 
@@ -459,7 +485,9 @@ Let's have some practice creating a React component for scratch. How about a blo
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/0e66a58ad0e34c273261a515ef4d71c8644b03d0)
 
-## Nested Components (5 minutes / 1:30)
+---
+
+### Nested Components (5 minutes / 1:30)
 
 **Q:** What problems did you encounter when trying to add multiple comments to your Post?
 * It would be a pain to have to explicitly define every comment inside of `<Post />`, especially if each comment itself had multiple properties.
@@ -485,6 +513,8 @@ var Post = React.createClass(
 )
 ```
 
+---
+
 ## Exercise: Add Nested Comments To Blog (15 minutes / 1:45)
 
 > 10 minutes exercise. 5 minutes review.
@@ -500,7 +530,11 @@ var Post = React.createClass(
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/ff48fdd6d4faae58d7b3e287edce542371b18205)
 
+---
+
 ## Break (10 minutes / 1:55)
+
+---
 
 ## State (10 minutes / 2:05)
 
@@ -595,7 +629,9 @@ Whenever we run `.setState`, our component "diff's" the current DOM, and compare
 * Only replaces the current DOM with parts that have changed.
 * This is super important! Using React, we only change parts of the DOM that need to be changed. This has strong implications on performance.
 
-## Exercise: Implement State (20 minutes / 2:25)
+---
+
+### Exercise: Implement State (20 minutes / 2:25)
 
 > 15 minutes exercise. 5 minutes review.
 
@@ -620,14 +656,18 @@ Make it so that the post body changes as you type it into the form. This will ma
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/c0382d0343f1544bbcb65961726dcaea13dd5115)
 
-# Closing (5 minutes / 2:30)
+---
 
-## What's Next?
+## Closing (5 minutes / 2:30)
+
+### What's Next?
 
 * [Router](https://github.com/reactjs/react-router)
 * [API/Axios](https://www.npmjs.com/package/axios)
 * [Events](https://facebook.github.io/react/tips/dom-event-listeners.html)
 * [Forms](https://facebook.github.io/react/docs/forms.html)
+
+---
 
 ## Additional Reading
 
