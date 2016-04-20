@@ -498,7 +498,7 @@ var PostView = React.createClass(
 >
 > **HINT II:** If you're going to write pure Javascript inside of `.map`'s return statement, you need to surround it with single brackets (`{}`).
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/a56bb927bd0f46234625391efab240fab04f6eab)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/ff48fdd6d4faae58d7b3e287edce542371b18205)
 
 ## Break (10 minutes / 1:55)
 
@@ -608,7 +608,7 @@ Let's implement `state` in our Blog by making `body` a mutable value.
   * How can you get a user input? Keep it simple and start with `prompt`.
 4. Add a button to `PostView`'s `render` method that triggers `editPost`.
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/3dce65c782f3a20fb553af19e4357c0924034237)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/c0382d0343f1544bbcb65961726dcaea13dd5115)
 
 # Closing (5 minutes / 2:30)
 
