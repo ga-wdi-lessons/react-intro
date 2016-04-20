@@ -608,6 +608,16 @@ Let's implement `state` in our Blog by making `body` a mutable value.
   * How can you get a user input? Keep it simple and start with `prompt`.
 4. Add a button to `PostView`'s `render` method that triggers `editPost`.
 
+#### Bonus I
+
+Use a form to take in user input. The post body should change `onSubmit`.
+
+#### Bonus II
+
+Make it so that the post body changes as you type it into the form. This will make use of `onChange`.
+
+> **NOTE:** You're starting to mock Angular's two-way data binding!
+
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/c0382d0343f1544bbcb65961726dcaea13dd5115)
 
 # Closing (5 minutes / 2:30)
