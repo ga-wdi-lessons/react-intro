@@ -520,7 +520,7 @@ var Post = React.createClass(
 > 10 minutes exercise. 5 minutes review.
 
 1. Create a `Comment` component in the same way we did for `Post`. Its `render` method should render a `commentBody` property.
-2. Amend your `Post`'s render method so that its return value generates multiple `<Comment />` elements. Make sure to pass in the comment body as an argument to each component.
+2. Amend your `Post`'s render method to include reference to a variable, `commentsList`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `commentsList` some where inside the UI for a `Post`.
 
 > **NOTE:** You can use `.map` in `Post`'s `render` method to avoid having to hard-code all your `Comment`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
 >
@@ -528,7 +528,7 @@ var Post = React.createClass(
 >
 > **HINT II:** Remember that whenever you write vanilla Javascript inside of JSX, you need to surround it with single brackets (`{}`).
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/ff48fdd6d4faae58d7b3e287edce542371b18205)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/2c50bb3fc124498e8576df3112508ca2ea4a78d1)
 
 ---
 
