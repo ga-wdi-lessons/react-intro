@@ -574,9 +574,9 @@ var Hello = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <Hello name="Tony" age="21" />,
-  document.getElementById( "container" )
+  document.getElementById( "app" )
 )
 ```
 
@@ -619,9 +619,9 @@ var Hello = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <Hello name="Tony" age="21" count="1"/>,
-  document.getElementById( "container" )
+  document.getElementById( "app" )
 )
 ```
 
