@@ -63,9 +63,7 @@ In today's class we will be building a simple blog from scratch. By the end of t
 
 Let's start by creating a directory for the app and initializing `npm`...
 
-```bash
-$ mkdir react-blog && cd react-blog && npm init -y
-```
+![](./images/readme-1.png)
 
 > `npm init -y` accepts all the defaults that, without the flag, you would have to hit the return key to accept.
 
@@ -77,22 +75,7 @@ $ npm install --save react react-dom && npm install --save-dev html-webpack-plug
 
 You'll know installation went okay if your `package.json` file looks like something like this. You might have different versions...
 
-```js
-// package.json
-
-"dependencies": {
-  "react": "^15.0.1",
-  "react-dom": "^15.0.1"
-},
-"devDependencies": {
-  "babel-core": "^6.7.6",
-  "babel-loader": "^6.2.4",
-  "babel-preset-react": "^6.5.0",
-  "html-webpack-plugin": "^2.15.0",
-  "webpack": "^1.13.0",
-  "webpack-dev-server": "^1.14.1"
-}
-```
+![](./images/readme-3.png)
 
 Let's take a look at the dependencies we just installed...
 * **React:** The library itself.
@@ -103,178 +86,103 @@ Let's take a look at the dependencies we just installed...
 <details>
   <summary>What's the difference between `devDependencies` and `dependencies`?</summary>
 
-  > DevDependencies are only used in the development environment.
+  <br>
 
+  ```
+   DevDependencies are only used in the development environment.
+  ```
 </details>
 
+<br>
 Let's continue building out the app skeleton...
 
-```bash
-$ mkdir app
-$ touch app/index.html app/index.js
-```
+![](./images/readme-4.png)
 
 Inside our `index.html` file, let's add some boilerplate html...
-​
-```html
-<!-- app/index.html -->
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>React Blog</title>
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
-</html>
-```
+​![](./images/readme-5.png)
 
 > Here we're creating a `div` with an id of `app`, which is the DOM element to which we'll be attaching our React application later on.
 
 ### Webpack
 ​
 Now we need to setup up Webpack for our application so that we can bundle and serve our static assets.
+
+<details>
+<summary>Why do we need to bundle our code? What problem is Webpack solving? </summary>
+
+```
+Think about how many times we have to take our code and change it so it's compliant with what the browser is used to (vanilla HTML, CSS, and JavaScript). So where Webpack really shines is you're able to tell it every transformation your code needs to make, and it will do them and output a bundle file for you full of those changes (and some other helpful things as well like minification if you desire).
+```
+
+</details>
+
+<br>
 ​
 In your terminal run...
 
-```bash
-$ touch webpack.config.js
-```
+![](./images/readme-6.png)
 ​
 In that file, go ahead a define an initial object to export...
 ​
-```js
-// webpack.config.js
-
-module.exports = {
-​
-}
-```
+![](./images/readme-7.png)
 
 <details>
   <summary>What are 3 things we need to account for when defining our Webpack configuration?</summary>
 
-  > (1) **`entry`**: The location of the app's root javascript file (specifying the app's point of entry).
-  >  
-  > (2) **`output`**: Where we want the bundled up output to go.
-  >  
-  > (3) **`loaders`**: The specific transformations to apply to our code.
+
+   > (1) **`entry`**: The location of the app's root javascript file (specifying the app's point of entry).
+   >
+   > (2) **`output`**: Where we want the bundled up output to go.
+   >
+   > (3) **`loaders`**: The specific transformations to apply to our code.
 
 </details>
 ​
-```js
-// webpack.config.js​
-
-module.exports = {
-  // What file to feed into webpack
-  entry: [
-    "./app/index.js"
-  ],
-  // Where we want our outputted files to go
-  output: {
-    path: __dirname + '/dist',
-    filename: "index_bundle.js"
-  },
-  // What transformations we want to apply to our code
-  module: {
-    loaders: [
-      {
-        test: /\.js$/, // target any file ending in js
-        exclude: /node_modules/, // except for node_modules
-        loader: 'babel-loader' // apply the babel loader
-      }
-    ]
-  }
-}
-```
+![](./images/readme-8.png)
 
 ​Next we need to setup Babel to specify which transformations should be run by the loader. In our app's root directory, we need to create a babel configuration file...
 ​
-```bash
-$ touch .babelrc
-```
+<br>
+
+![](./images/readme-9.png)
 ​
 Inside `.babelrc`...
 ​
-```js
-// .babelrc
-
-{
-  "presets": [
-    "react"
-  ]
-}
-```
+![](./images/readme-10.png)
 
 ​Everything inside the `presets` array will be the specific transformations applied by Babel. For now, however, we are only adding the `react` preset, which will convert our JSX code into regular Javascript.  
 
 Another thing we have to do is configure Webpack to produce an `html` file that loads our bundled code. At the top of `webpack.config.js`, let's utilize `html-webpack-plugin`...
 ​
-```js
-// webpack.config.js
-
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HtmlWebPackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + "/app/index.html",
-  filename: "index.html",
-  inject: 'body'
-});
-```
+![](./images/readme-11.png)
 
 Now we can go ahead and add that as a plugin in our Webpack config...
 ​
-```js
-// webpack.config.js
+![](./images/readme-12.png)
 
-  // Add this code after `module: {...}`
-  plugins: [
-     HtmlWebPackPluginConfig
-  ]
-}
-```
-
-​We're using `html-webpack-plugin` to look into our `app/` directory and copy the contents of `index.html` there so that we can be sure to create another `index.html` in the `dist/` directory.
-
-This new `index.html` be the file that is loading in our bundled code and the one we will be serving our app from. Webpack will automatically sync the files after every change.
+​We're using `html-webpack-plugin` to look into our `app/` directory and copy the contents of `index.html` there so that we can be sure to create another `index.html` in the `dist/` directory. This new `index.html` be the file that is loading in our bundled code and the one we will be serving our app from. Webpack will automatically sync the files after every change.
 
 > `dist/` is the directory that will store all of our "bundled" code.​
 
 In order to actually run Webpack, let's define a script in `package.json` to test our app's configuration...
 ​
-```js
-// package.json
-
-"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1", // This should already be in there.
-  "production": "webpack -p"
-}
-```
+![](./images/readme-13.png)
 
 > There should already be a `scripts` object in `package.json`. Add this new key-value pair to that.
 
 ​Now from the command line, we can run a script that will launch Webpack and start the bundling...
 ​
-```bash
-$ npm run production
-```
+![](./images/readme-14.png)
 
 ​If this command executes without any errors, it will create a new directory `dist`. In that directory, we will find...
+
 * **`index_bundle.js`**: our app's minified Javascript code.
 * **`index.html`**: a new index file that will link to `index_bundle.js`
 
 One final thing: in order to actually run our code we'll need to spin a local server using `webpack-dev-server`. We can create a terminal command for this by adding another script to `package.json`...
 
-```js
-// package.json
-
-"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1", // This should already be in there.
-  "production": "webpack -p",
-  "start": "webpack-dev-server"
-}
-```
+![](./images/readme-15.png)
 
 Now we can run `npm run start` from the Terminal and visit our application at `http://localhost:8080`.
 
@@ -317,20 +225,7 @@ Throughout class we have separated HTML, CSS and Javascript.
 
 What does a component look like? Let's start with a simple "Hello World" example...
 
-```js
-// Load React and React-DOM modules.
-var React = require("react");
-var ReactDOM = require("react-dom");
-
-// React component definition.
-var Hello = React.createClass({
-  render: function(){
-    return (
-      <p>Hello world.</p>
-    );
-  }
-})
-```
+![](./images/readme-16.png)
 
 #### What's that HTML doing in my Javascript?
 
@@ -368,25 +263,7 @@ The Virtual DOM is a Javascript representation of the actual DOM.
 
 So we've created the template for our component. But how do we actually render it?
 
-```js
-// app/index.js
-
-var React = require("react");
-var ReactDOM = require("react-dom");
-
-var Hello = React.createClass({
-  render: function(){
-    return (
-      <p>Hello world.</p>
-    );
-  }
-})
-
-ReactDOM.render(
-  <Hello />,
-  document.getElementById( "app" )
-);
-```
+![](./images/readme-17.png)
 
 > In place of `ReactDOM.render` some tutorials will use React.renderComponent, which has been phased out. Change outlined [here](http://bit.ly/1E81Whs).
 
@@ -409,25 +286,7 @@ Our `Hello` component isn't too helpful. Let's make it more interesting.
 * Rather than simply display "Hello world", let's display a greeting to the user.
 * So the question is, how do we feed a name to our `Hello` component without hardcoding it into our render method?
 
-```js
-// app/index.js
-
-var React = require("react");
-var ReactDOM = require("react-dom");
-
-var Hello = React.createClass({
-  render: function(){
-    return (
-      <p>Hello { this.props.name }</p>
-    );
-  }
-});
-
-ReactDOM.render(
-  <Hello name="Tony" />,
-  document.getElementById( "app" )
-)
-```
+![](./images/readme-18.png)
 
 In the above example, we replaced "world" with `{this.props.name}`.
 
@@ -439,28 +298,7 @@ Properties! Every component has `.props`.
 
 We can create multiple properties for a component...
 
-```js
-// app/index.js
-
-var React = require("react");
-var ReactDOM = require("react-dom");
-
-var Hello = React.createClass({
-  render: function(){
-    return (
-      <div>
-        <p>Hello { this.props.name }.</p>
-        <p>You are { this.props.age } years old.</p>
-      </div>
-    );
-  }
-});
-
-ReactDOM.render(
-  <Hello name="Tony" age="21" />,
-  document.getElementById( "app" )
-)
-```
+![](./images/readme-19.png)
 
 > **NOTE:** The return statement in `render` can only return one DOM element. You can, however, place multiple elements within a parent DOM element, like we do in the previous example with `<div>`.
 
@@ -499,19 +337,7 @@ We can nest Comment components within a Post component.
 
 A nested component looks something like this. You're going to take a stab at setting them up in the next exercise...
 
-```js
-var Post = React.createClass(
-  render: function(){
-    <div>
-      <h2>{this.props.title}</h2>
-      <p>By {this.props.author}</p>
-      <p>{this.props.body}</p>
-      <h3>Comments</h3>
-      <Comment body={this.props.comment} />
-    </div>
-  }
-)
-```
+![](./images/readme-20.png)
 
 ---
 
@@ -520,7 +346,7 @@ var Post = React.createClass(
 > 10 minutes exercise. 5 minutes review.
 
 1. Create a `Comment` component in the same way we did for `Post`. Its `render` method should render a `commentBody` property.
-2. Amend your `Post`'s render method so that its return value generates multiple `<Comment />` elements. Make sure to pass in the comment body as an argument to each component.
+2. Amend your `Post`'s render method to include reference to a variable, `commentsList`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `commentsList` some where inside the UI for a `Post`.
 
 > **NOTE:** You can use `.map` in `Post`'s `render` method to avoid having to hard-code all your `Comment`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
 >
@@ -528,7 +354,7 @@ var Post = React.createClass(
 >
 > **HINT II:** Remember that whenever you write vanilla Javascript inside of JSX, you need to surround it with single brackets (`{}`).
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/ff48fdd6d4faae58d7b3e287edce542371b18205)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/2c50bb3fc124498e8576df3112508ca2ea4a78d1)
 
 ---
 
@@ -548,37 +374,7 @@ Values stored in a component's state are mutable attributes.
 
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
-```js
-// app/index.js
-
-var Hello = React.createClass({
-
-  // Here we define the initial values of our state. `getInitialState` returns an object with the initial state values.
-  getInitialState: function(){
-    return {
-      // We have one state value: a counter.
-      counter: 0
-    }
-  },
-
-  render: function(){
-    return (
-      <div>
-        <p>Hello { this.props.name }.</p>
-        <p>You are { this.props.age } years old.</p>
-
-        // We can reference state values just like props using `this.state.val`.
-        <p>We have counted up to {this.state.counter}.</p>
-      </div>
-    );
-  }
-});
-
-ReactDOM.render(
-  <Hello name="Tony" age="21" />,
-  document.getElementById( "app" )
-)
-```
+![](./images/readme-21.png)
 
 Ok, we set an initial state. But how do we go about changing it?
 * We need to set up some sort of trigger event to change our counter.
@@ -592,38 +388,7 @@ Ok, we set an initial state. But how do we go about changing it?
 
 </details>
 
-```js
-var Hello = React.createClass({
-
-  getInitialState: function(){
-    return {
-      counter: this.props.count
-    }
-  },
-
-  raiseCounter: function(){
-    this.setState({
-      counter: parseInt(this.state.counter) + 1
-    })
-  },
-
-  render: function(){
-    return (
-      <div>
-        <p>Hello { this.props.name }.</p>
-        <p>You are { this.props.age } years old.</p>
-        <p>I have said hello {this.state.counter} times.</p>
-        <button onClick={ this.raiseCounter }>Again.</button>
-      </div>
-    );
-  }
-});
-
-ReactDOM.render(
-  <Hello name="Tony" age="21" count="1"/>,
-  document.getElementById( "app" )
-)
-```
+![](./images/readme-22.png)
 
 Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
