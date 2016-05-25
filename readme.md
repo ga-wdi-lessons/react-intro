@@ -136,6 +136,13 @@ Inside our `index.html` file, let's add some boilerplate html...
 ### Webpack
 ​
 Now we need to setup up Webpack for our application so that we can bundle and serve our static assets.
+
+<details>
+<summary>Why do we need to bundle our code? What problem is Webpack solving? </summary>
+
+> Think about how many times we have to take our code and change it so it's compliant with what the browser is used to (vanilla HTML, CSS, and JavaScript). So where Webpack really shines is you're able to tell it every transformation your code needs to make, and it will do them and output a bundle file for you full of those changes (and some other helpful things as well like minification if you desire).
+
+</details>
 ​
 In your terminal run...
 
@@ -216,7 +223,7 @@ Another thing we have to do is configure Webpack to produce an `html` file that 
 // webpack.config.js
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HtmlWebPackPluginConfig = new HtmlWebpackPlugin({
+var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + "/app/index.html",
   filename: "index.html",
   inject: 'body'
@@ -230,7 +237,7 @@ Now we can go ahead and add that as a plugin in our Webpack config...
 
   // Add this code after `module: {...}`
   plugins: [
-     HtmlWebPackPluginConfig
+     HtmlWebpackPluginConfig
   ]
 }
 ```
