@@ -143,6 +143,8 @@ In that file, go ahead a define an initial object to export...
 
 ​Next we need to setup Babel to specify which transformations should be run by the loader. In our app's root directory, we need to create a babel configuration file...
 ​
+<br>
+
 ![](./images/readme-9.png)
 ​
 Inside `.babelrc`...
@@ -150,8 +152,6 @@ Inside `.babelrc`...
 ![](./images/readme-10.png)
 
 ​Everything inside the `presets` array will be the specific transformations applied by Babel. For now, however, we are only adding the `react` preset, which will convert our JSX code into regular Javascript.  
-
-<br>
 
 Another thing we have to do is configure Webpack to produce an `html` file that loads our bundled code. At the top of `webpack.config.js`, let's utilize `html-webpack-plugin`...
 ​
@@ -161,11 +161,9 @@ Now we can go ahead and add that as a plugin in our Webpack config...
 ​
 ![](./images/readme-12.png)
 
-​We're using `html-webpack-plugin` to look into our `app/` directory and copy the contents of `index.html` there so that we can be sure to create another `index.html` in the `dist/` directory.
+​We're using `html-webpack-plugin` to look into our `app/` directory and copy the contents of `index.html` there so that we can be sure to create another `index.html` in the `dist/` directory. This new `index.html` be the file that is loading in our bundled code and the one we will be serving our app from. Webpack will automatically sync the files after every change.
 
-This new `index.html` be the file that is loading in our bundled code and the one we will be serving our app from. Webpack will automatically sync the files after every change.
-
-`dist/` is the directory that will store all of our "bundled" code.​
+> `dist/` is the directory that will store all of our "bundled" code.​
 
 In order to actually run Webpack, let's define a script in `package.json` to test our app's configuration...
 ​
