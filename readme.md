@@ -419,7 +419,7 @@ Make it so that the post body changes as you type it into the form. This will ma
 
 > **NOTE:** You're starting to mock Angular's two-way data binding!
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/c0382d0343f1544bbcb65961726dcaea13dd5115)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/ff1c8d911bc03a2d8d0782dbd152594f8c8d5692)
 
 ---
 
