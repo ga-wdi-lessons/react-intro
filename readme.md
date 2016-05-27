@@ -8,7 +8,7 @@
 
 ## Learning Objectives
 
-* Explain what ReactJS is.
+* Explain what ReactJS is and where it fits in our applications' stack.
 * Explain the component model of web development.
 * Create and render React components in the browser.
 * Pass in data to a React component via `props`.
