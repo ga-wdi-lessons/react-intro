@@ -139,7 +139,7 @@ the contents and in its place add this component definition:
 // bring in React and Component instance from react
 import React, {Component} from 'react'
 
-// define our HelloWorld component
+// define our Hello component
 class Hello extends Component {
   // what should the component render
   render () {
@@ -170,7 +170,6 @@ This is the component we're creating. In this example, we are creating a "Hello"
 
 ##### `extends Component`
 This is the React library class we inherit from to create our component definition.
-  * Takes an object as an argument.
 
 ##### `render()`
 Every component has, at minimum, a render method. It generates a **Virtual DOM** node that will be added to the actual DOM.
@@ -198,8 +197,8 @@ import ReactDOM from `react-dom`
 import Hello from './App.js'
 
 ReactDOM.render(
+  <Hello />,
   document.getElementById('root'),
-  <Hello />
 )
 ```
 
@@ -231,12 +230,12 @@ import ReactDOM from `react-dom`
 import Hello from './App.js'
 
 ReactDOM.render(
-  document.getElementById('root'),
-  <Hello name="Nick" />
+  <Hello name={"Nick"} />,
+  document.getElementById('root')
 )
 ```
 
-Then in our component defintion, we have a reference to that data via the as a property on the `props` object:
+Then in our component definition, we have a reference to that data via as a property on the `props` object:
 
 ```js
 class Hello extends Component {
@@ -265,8 +264,8 @@ import ReactDOM from `react-dom`
 import Hello from './App.js'
 
 ReactDOM.render(
-  document.getElementById('root'),
-  <Hello name="Nick" age=24 />
+  <Hello name={"Nick"} age={24} />,
+  document.getElementById('root')
 )
 ```
 
@@ -372,7 +371,7 @@ class Post extends Component {
 export default Post;
 ```
 
-> **Note**: We could put all of our code in one file, but it's considered a good practice to break components outs into different files to help practice separation of concerns. The only downside is we have to be extra concise of remembering to **export / import** each component to where its rendered.
+> **Note**: We could put all of our code in one file, but it's considered a good practice to break components outs into different files to help practice separation of concerns. The only downside is we have to be extra conscious of remembering to **export / import** each component to where its rendered.
 
 ---
 
@@ -411,10 +410,14 @@ Lets implement state in our earlier `Hello` example by incorporating a counter i
 
 ```js
 class Hello extends Component {
+  // when our component is initialized,
+  // our constructor function is called
   constructor (props) {
+    // make call to parent class' (Component) constructor
     super()
+    // define an initial state
     this.state = {
-      counter: 0
+      counter: 0 // initialize this.state.counter to be 0
     }
   }
   render () {
