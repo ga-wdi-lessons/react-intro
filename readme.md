@@ -55,136 +55,43 @@ React can be used agnostically throughout your stack. It's role is just to use d
 
 ## Initial Setup (20 minutes / 0:25)
 
-> **NOTE:** We're about to do a good amount of setup here. Don't worry if you fall behind - we will set aside time at the end of this section to get everybody caught up.  
+In order to create a new project and to get our development environment setup, we are going to use Facebook's dev team's tool: `create-react-app`
 
-In today's class we will be building a simple blog from scratch. By the end of the lesson, it will have one post with several comments.
+In your terminal, move into your `exercises` directory and run:
 
-> If you're interested, the solution and commit history for the blog can be found [here](https://github.com/ga-wdi-exercises/simple-react-blog/commits/solution).
-
-Let's start by creating a directory for the app and initializing `npm`...
-
-![](./images/readme-1.png)
-
-> `npm init -y` accepts all the defaults that, without the flag, you would have to hit the return key to accept.
-
-Now, we're going to install **A LOT** of stuff. Bear with us for a second and run the following command in the terminal...
 
 ```bash
-$ npm install --save react react-dom && npm install --save-dev html-webpack-plugin webpack webpack-dev-server babel-{core,loader} babel-preset-react
+$ npm i -g create-react-app
+$ create-react-app helloworld
+$ cd helloworld
+$ npm run start
 ```
 
-You'll know installation went okay if your `package.json` file looks like something like this. You might have different versions...
+Now we can visit our application at `http://localhost:3000`.
 
-![](./images/readme-3.png)
+Let's review what files were created by the generator.
 
-Let's take a look at the dependencies we just installed...
-* **React:** The library itself.
-* **React-DOM:** An additional module that allows us to update the DOM using React components.
-* **Webpack:** You learned about this "code bundler" in your [Build Tools lesson](https://github.com/ga-wdi-lessons/build-tools#webpack-10-mins).
-* **Babel:** This one's actually new. We'll be using Babel to transpile an HTML-like syntax called JSX into Javascript.
+Pretty much, `create-react-app` basically provides us with all the necessary tools and configuration necessary to start writing React.
 
-<details>
-  <summary>What's the difference between `devDependencies` and `dependencies`?</summary>
+Along with installing the necessary dependencies such as React, ReactDom, Babel, Webpack, it creates a initial app skeleton that looks like this:
 
-  <br>
-
-  ```
-   DevDependencies are only used in the development environment.
-  ```
-</details>
-
-<br>
-Let's continue building out the app skeleton...
-
-![](./images/readme-4.png)
-
-Inside our `index.html` file, let's add some boilerplate html...
-
-​![](./images/readme-5.png)
-
-> Here we're creating a `div` with an id of `app`, which is the DOM element to which we'll be attaching our React application later on.
-
-### Webpack
-​
-Now we need to setup up Webpack for our application so that we can bundle and serve our static assets.
-
-<details>
-<summary>Why do we need to bundle our code? What problem is Webpack solving? </summary>
-
-```
-Think about how many times we have to take our code and change it so it's compliant with what the browser is used to (vanilla HTML, CSS, and JavaScript). So where Webpack really shines is you're able to tell it every transformation your code needs to make, and it will do them and output a bundle file for you full of those changes (and some other helpful things as well like minification if you desire).
+```bash
+├──README.md
+├──  favicon.ico
+├──  index.html
+├──  node_modules
+├──  package.json
+└──  src
+    ├──  App.css
+    ├──  App.js
+    ├──  index.css
+    ├──  index.js
+    └──  logo.svg
 ```
 
-</details>
+Most of the important files and primarily where we will be working today are in the `/src` directory.
 
-<br>
-​
-In your terminal run...
-
-![](./images/readme-6.png)
-​
-In that file, go ahead a define an initial object to export...
-​
-![](./images/readme-7.png)
-
-<details>
-  <summary>What are 3 things we need to account for when defining our Webpack configuration?</summary>
-
-
-   > (1) **`entry`**: The location of the app's root javascript file (specifying the app's point of entry).
-   >
-   > (2) **`output`**: Where we want the bundled up output to go.
-   >
-   > (3) **`loaders`**: The specific transformations to apply to our code.
-
-</details>
-​
-![](./images/readme-8.png)
-
-​Next we need to setup Babel to specify which transformations should be run by the loader. In our app's root directory, we need to create a babel configuration file...
-​
-<br>
-
-![](./images/readme-9.png)
-​
-Inside `.babelrc`...
-​
-![](./images/readme-10.png)
-
-​Everything inside the `presets` array will be the specific transformations applied by Babel. For now, however, we are only adding the `react` preset, which will convert our JSX code into regular Javascript.  
-
-Another thing we have to do is configure Webpack to produce an `html` file that loads our bundled code. At the top of `webpack.config.js`, let's utilize `html-webpack-plugin`...
-​
-![](./images/readme-11.png)
-
-Now we can go ahead and add that as a plugin in our Webpack config...
-​
-![](./images/readme-12.png)
-
-​We're using `html-webpack-plugin` to look into our `app/` directory and copy the contents of `index.html` there so that we can be sure to create another `index.html` in the `dist/` directory. This new `index.html` be the file that is loading in our bundled code and the one we will be serving our app from. Webpack will automatically sync the files after every change.
-
-> `dist/` is the directory that will store all of our "bundled" code.​
-
-In order to actually run Webpack, let's define a script in `package.json` to test our app's configuration...
-​
-![](./images/readme-13.png)
-
-> There should already be a `scripts` object in `package.json`. Add this new key-value pair to that.
-
-​Now from the command line, we can run a script that will launch Webpack and start the bundling...
-​
-![](./images/readme-14.png)
-
-​If this command executes without any errors, it will create a new directory `dist`. In that directory, we will find...
-
-* **`index_bundle.js`**: our app's minified Javascript code.
-* **`index.html`**: a new index file that will link to `index_bundle.js`
-
-One final thing: in order to actually run our code we'll need to spin a local server using `webpack-dev-server`. We can create a terminal command for this by adding another script to `package.json`...
-
-![](./images/readme-15.png)
-
-Now we can run `npm run start` from the Terminal and visit our application at `http://localhost:8080`.
+If you finish up early, review and play with the code in `/src/App.js`, `/src/index.js`, and  `index.html`
 
 ---
 
@@ -225,7 +132,28 @@ Throughout class we have separated HTML, CSS and Javascript.
 
 What does a component look like? Let's start with a simple "Hello World" example...
 
-![](./images/readme-16.png)
+To start, in our `/src/App.js` file, let's remove
+the contents and in its place add this component definition:
+
+```js
+// bring in React and Component instance from react
+import React, {Component} from 'react'
+
+// define our HelloWorld component
+class Hello extends Component {
+  // what should the component render
+  render () {
+    // Make sure to return some UI
+    return (
+      <h1>Hello World!</h1>
+    )
+  }
+}
+
+export default Hello
+```
+
+Ok let's recap what's going on.
 
 #### What's that HTML doing in my Javascript?
 
@@ -237,14 +165,14 @@ Often times we write out React components in **JSX**.
 
 Let's break down the things we see here...
 
-##### `var Hello`
+##### `class Hello`
 This is the component we're creating. In this example, we are creating a "Hello" component.
 
-##### `React.createClass`
-This is the React library method we use to create our component definition.
+##### `extends Component`
+This is the React library class we inherit from to create our component definition.
   * Takes an object as an argument.
 
-##### `render`
+##### `render()`
 Every component has, at minimum, a render method. It generates a **Virtual DOM** node that will be added to the actual DOM.
 * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
 
@@ -263,11 +191,21 @@ The Virtual DOM is a Javascript representation of the actual DOM.
 
 So we've created the template for our component. But how do we actually render it?
 
-![](./images/readme-17.png)
+Now, we need to replace the contents of `/src/index.js` with some code to load in our new component and render it on the DOM:
+
+```js
+import ReactDOM from `react-dom`
+import Hello from './App.js'
+
+ReactDOM.render(
+  document.getElementById('root'),
+  <Hello />
+)
+```
 
 > In place of `ReactDOM.render` some tutorials will use React.renderComponent, which has been phased out. Change outlined [here](http://bit.ly/1E81Whs).
 
-`ReactDOM.render` takes the Virtual DOM node created by `.createClass` and adds it to the actual DOM. It takes two arguments...
+`ReactDOM.render` takes the Virtual DOM node created by `extends Component` and adds it to the actual DOM. It takes two arguments...
   1. The component.
   2. The DOM element we want to append it to.
 
@@ -286,7 +224,29 @@ Our `Hello` component isn't too helpful. Let's make it more interesting.
 * Rather than simply display "Hello world", let's display a greeting to the user.
 * So the question is, how do we feed a name to our `Hello` component without hardcoding it into our render method?
 
-![](./images/readme-18.png)
+First, we pass in data wherever we are rendering our component, in this case in `src/index.js`:
+
+```js
+import ReactDOM from `react-dom`
+import Hello from './App.js'
+
+ReactDOM.render(
+  document.getElementById('root'),
+  <Hello name="Nick" />
+)
+```
+
+Then in our component defintion, we have a reference to that data via the as a property on the `props` object:
+
+```js
+class Hello extends Component {
+  render () {
+    return (
+      <h1>Hello {this.props.name}</h1>
+    )
+  }
+}
+```
 
 In the above example, we replaced "world" with `{this.props.name}`.
 
@@ -298,7 +258,34 @@ Properties! Every component has `.props`.
 
 We can create multiple properties for a component...
 
-![](./images/readme-19.png)
+First we can pass multiple arguments to our component when its rendered in `src/index.js`:
+
+```js
+import ReactDOM from `react-dom`
+import Hello from './App.js'
+
+ReactDOM.render(
+  document.getElementById('root'),
+  <Hello name="Nick" age=24 />
+)
+```
+
+Then in our component definition we have access to both values:
+
+```js
+class Hello extends Component {
+  render () {
+    // can only return one top-level element
+    return (
+      <div>
+        <h1>Hello {this.props.name}</h1>
+        <p>You are {this.props.age} years old</p>
+      <div>
+    )
+  }
+}
+
+```
 
 > **NOTE:** The return statement in `render` can only return one DOM element. You can, however, place multiple elements within a parent DOM element, like we do in the previous example with `<div>`.
 
@@ -313,7 +300,7 @@ We can create multiple properties for a component...
 > 15 minutes exercise. 5 minutes review.
 
 Let's have some practice creating a React component for scratch. How about a blog post?
-* Create a `post` object literal in `index.js` that has the below properties.
+* Create a `post` object literal in `src/App.js` that has the below properties.
   1. `title`
   2. `author`
   3. `body`
@@ -321,23 +308,71 @@ Let's have some practice creating a React component for scratch. How about a blo
 * Render these properties using a Post component.
 * The HTML (or more accurately, JSX) composition of your Post is up to you.
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/0e66a58ad0e34c273261a515ef4d71c8644b03d0)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/f1088165898d1a20df956647c8e9b5ed67d9ad32)
 
 ---
 
 ### Nested Components (5 minutes / 1:30)
 
 **Q:** What problems did you encounter when trying to add multiple comments to your Post?
+
 * It would be a pain to have to explicitly define every comment inside of `<Post />`, especially if each comment itself had multiple properties.
 * This problem is a tell tale sign that our separation of concerns is being stretched, and its time to break things into a new component.
 
 We can nest Comment components within a Post component.
-* We create these comments the same way we did with posts: `.createClass` and `.render`
+* We create these comments the same way we did with posts: `extends Component` and `.render`
 * Then we can reference a comment using `<Comment />` inside of Post's render method.
 
 A nested component looks something like this. You're going to take a stab at setting them up in the next exercise...
 
-![](./images/readme-20.png)
+First, let's create a new file for our Comment component, `src/Comment.js`:
+
+```js
+import React, {Component} from 'react'
+
+class Comment extends Component {
+  render () {
+    return (
+      <div>
+        <p>{this.props.body}<p>
+      </div>
+    )
+  }
+}
+
+export default Comment
+```
+
+Then in `src/App.js`, we need to load in our `Comment` component and render it inside of our `Post` component:
+
+```js
+import React, { Component } from 'react';
+// Load in Comment component
+import Comment from './Comment.js'
+import './App.css';
+
+
+class Post extends Component {
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <p>By {this.props.author}</p>
+        <div>
+          <p>{this.props.body}</p>
+        </div>
+        <h3>Comments:</h3>
+        // Render Comment component, passing in data
+        <Comment body={this.props.comments[0]} />
+      </div>
+    );
+  }
+}
+
+export default Post;
+```
+
+> **Note**: We could put all of our code in one file, but it's considered a good practice to break components outs into different files to help practice separation of concerns. The only downside is we have to be extra concise of remembering to **export / import** each component to where its rendered.
 
 ---
 
@@ -354,7 +389,7 @@ A nested component looks something like this. You're going to take a stab at set
 >
 > **HINT II:** Remember that whenever you write vanilla Javascript inside of JSX, you need to surround it with single brackets (`{}`).
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/2c50bb3fc124498e8576df3112508ca2ea4a78d1)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/d71120b727113d7f7d2305f9d2b91e6948c5dde3)
 
 ---
 
@@ -374,7 +409,27 @@ Values stored in a component's state are mutable attributes.
 
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
-![](./images/readme-21.png)
+```js
+class Hello extends Component {
+  constructor (props) {
+    super()
+    this.state = {
+      counter: 0
+    }
+  }
+  render () {
+    // can only return one top-level element
+    return (
+      <div>
+        <h1>Hello {this.props.name}</h1>
+        <p>You are {this.props.age} years old</p>
+        <p>The initial count is {this.state.count}
+        </p>
+      <div>
+    )
+  }
+}
+```
 
 Ok, we set an initial state. But how do we go about changing it?
 * We need to set up some sort of trigger event to change our counter.
@@ -388,7 +443,33 @@ Ok, we set an initial state. But how do we go about changing it?
 
 </details>
 
-![](./images/readme-22.png)
+```js
+class Hello extends Component {
+  constructor (props) {
+    super()
+    this.state = {
+      counter: 0
+    }
+  }
+  handleClick (e) {
+    this.setState({
+      counter: this.state.counter + 1
+    })
+  }
+  render () {
+    // can only return one top-level element
+    return (
+      <div>
+        <h1>Hello {this.props.name}</h1>
+        <p>You are {this.props.age} years old</p>
+        <p>The initial count is {this.state.count}
+        </p>
+        <button onclick={(e) => this.handleClick(e)}>click me!</button>
+      <div>
+    )
+  }
+}
+```
 
 Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
@@ -402,7 +483,7 @@ Whenever we run `.setState`, our component "diff's" the current DOM, and compare
 
 Let's implement `state` in our Blog by making `body` a mutable value.
 
-1. Initialize a state using `.getInitialState` for our `Post`. It should create a state value called `body`. Set it to the `body` of your hard-coded `post`.
+1. Initialize a state using a `constructor()` method for our `Post` to set a initial state. It should create a state value called `body`. Set it to the `body` of your hard-coded `post`.
 2. Modify `Post`'s `render` method so that `body` comes from `state`, not `props`.
 3. Create an `editPost` method inside `Post` that updates `body` based on a user input.
   * You should use `setState` somewhere in this method.
@@ -419,7 +500,7 @@ Make it so that the post body changes as you type it into the form. This will ma
 
 > **NOTE:** You're starting to mock Angular's two-way data binding!
 
-#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/ff1c8d911bc03a2d8d0782dbd152594f8c8d5692)
+#### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/1a6d611e1a12fbe122029a33c5eec9234fc88406)
 
 ---
 
