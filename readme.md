@@ -193,6 +193,7 @@ So we've created the template for our component. But how do we actually render i
 Now, we need to replace the contents of `/src/index.js` with some code to load in our new component and render it on the DOM:
 
 ```js
+import React from 'react'
 import ReactDOM from 'react-dom'
 import Hello from './App.js'
 
