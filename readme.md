@@ -35,7 +35,7 @@ React was born out of Facebook's frustration with the traditional MVC model and 
   * Re-rendering something meant re-rendering everything (or just a lot).
   * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
 
-> If you want to get a taste of what React's all about, [here's an introduction from React.js Conf 2015.](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)  
+> If you want to get a taste of what React's all about, [here's an introduction from React.js Conf 2015.](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510). Recommend starting around the 8:35 mark, and watching until 16:30 (you can probably skip to 9:30 to 11:57 )
 
 ### React in MVC
 
@@ -71,7 +71,7 @@ Now we can visit our application at `http://localhost:3000`.
 
 Let's review what files were created by the generator.
 
-Pretty much, `create-react-app` basically provides us with all the necessary tools and configuration necessary to start writing React.
+Basically, `create-react-app` provides us with all the necessary tools and configuration necessary to start writing React.
 
 Along with installing the necessary dependencies such as React, ReactDom, Babel, Webpack, it creates a initial app skeleton that looks like this:
 
