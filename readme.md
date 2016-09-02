@@ -44,7 +44,7 @@ React was born out of Facebook's frustration with the traditional MVC model and 
 <details>
   <summary>What is the role of a "view" in a front-end Javascript application?</summary>
 
-  > The visual template the user sees, populated with data from our models -- not the entire page.
+  > The visual template the user sees, populated with data from our models.
 
 </details>
 
@@ -71,7 +71,7 @@ Now we can visit our application at `http://localhost:3000`.
 
 Let's review what files were created by the generator.
 
-Basically, `create-react-app` provides us with all the necessary tools and configuration necessary to start writing React.
+Basically, `create-react-app` provides us with all the necessary tools and configuration necessary to start writing React. `npm run start`refers to an included script that starts up the development server.
 
 Along with installing the necessary dependencies such as React, ReactDom, Babel, Webpack, it creates a initial app skeleton that looks like this:
 
@@ -158,7 +158,7 @@ Ok let's recap what's going on.
 #### What's that HTML doing in my Javascript?
 
 Often times we write out React components in **JSX**.
-* JSX is an alternate Javascript syntax that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
+* JSX is[an alternate Javascript syntax](http://blog.yld.io/2015/06/10/getting-started-with-react-and-node-js/#.V8eDk5MrJPN) that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
 * React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
 
 > React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
@@ -175,6 +175,9 @@ This is the React library class we inherit from to create our component definiti
 Every component has, at minimum, a render method. It generates a **Virtual DOM** node that will be added to the actual DOM.
 * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
 
+##### `export default Hello`
+This exposes the Hello class to other files which import from the App.js file. The `default` keyword means that any import that's name doesn't match a named export will default to this. Only one default is allowed per file.
+
 **Virtual DOM? How is that different from the usual DOM?**
 
 The Virtual DOM is a Javascript representation of the actual DOM.
@@ -190,7 +193,7 @@ The Virtual DOM is a Javascript representation of the actual DOM.
 
 So we've created the template for our component. But how do we actually render it?
 
-Now, we need to replace the contents of `/src/index.js` with some code to load in our new component and render it on the DOM:
+Now, let's look at code for `/src/index.js` to load in our new component and render it on the DOM:
 
 ```js
 import React from 'react'
@@ -253,7 +256,7 @@ In the above example, we replaced "world" with `{this.props.name}`.
 #### What are `.props`?
 
 Properties! Every component has `.props`.
-* Properties are immutable and cannot be changed while your program is running.
+* Properties are immutable. That is, they cannot be changed while your program is running.
 * We define properties in development and pass them in as attributes to the JSX element in our `.render` method.
 
 We can create multiple properties for a component...
@@ -299,7 +302,7 @@ class Hello extends Component {
 
 > 15 minutes exercise. 5 minutes review.
 
-Let's have some practice creating a React component for scratch. How about a blog post?
+Let's have some practice creating a React component from scratch. How about a blog post?
 * Create a `post` object literal in `src/App.js` that has the below properties.
   1. `title`
   2. `author`
@@ -334,7 +337,7 @@ class Comment extends Component {
   render () {
     return (
       <div>
-        <p>{this.props.body}<p>
+        <p>{this.props.body}</p>
       </div>
     )
   }
@@ -380,8 +383,7 @@ export default Post;
 
 > 10 minutes exercise. 5 minutes review.
 
-1. Create a `Comment` component in the same way we did for `Post`. Its `render` method should render a `commentBody` property.
-2. Amend your `Post`'s render method to include reference to a variable, `commentsList`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `commentsList` some where inside the UI for a `Post`.
+ Amend your `Post`'s render method to include reference to a variable, `comments`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `comments` some where inside the UI for a `Post`.
 
 > **NOTE:** You can use `.map` in `Post`'s `render` method to avoid having to hard-code all your `Comment`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
 >
@@ -427,9 +429,9 @@ class Hello extends Component {
       <div>
         <h1>Hello {this.props.name}</h1>
         <p>You are {this.props.age} years old</p>
-        <p>The initial count is {this.state.count}
+        <p>The initial count is {this.state.counter}
         </p>
-      <div>
+      </div>
     )
   }
 }
@@ -456,6 +458,7 @@ class Hello extends Component {
     }
   }
   handleClick (e) {
+    // setState is inherited from the Component class
     this.setState({
       counter: this.state.counter + 1
     })
@@ -466,10 +469,10 @@ class Hello extends Component {
       <div>
         <h1>Hello {this.props.name}</h1>
         <p>You are {this.props.age} years old</p>
-        <p>The initial count is {this.state.count}
+        <p>The initial count is {this.state.counter}
         </p>
-        <button onclick={(e) => this.handleClick(e)}>click me!</button>
-      <div>
+        <button onClick={(e) => this.handleClick(e)}>click me!</button>
+      </div>
     )
   }
 }
@@ -489,10 +492,10 @@ Let's implement `state` in our Blog by making `body` a mutable value.
 
 1. Initialize a state using a `constructor()` method for our `Post` to set a initial state. It should create a state value called `body`. Set it to the `body` of your hard-coded `post`.
 2. Modify `Post`'s `render` method so that `body` comes from `state`, not `props`.
-3. Create an `editPost` method inside `Post` that updates `body` based on a user input.
+3. Create a `handleClick` method inside `Post` that updates `body` based on a user input.
   * You should use `setState` somewhere in this method.
   * How can you get a user input? Keep it simple and start with `prompt`.
-4. Add a button to `Post`'s `render` method that triggers `editPost`.
+4. Add a button to `Post`'s `render` method that triggers `handleClick`.
 
 #### Bonus I
 
