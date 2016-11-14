@@ -54,18 +54,18 @@ React can be used agnostically throughout your stack. It's role is just to use d
 
 ## Initial Setup (20 minutes / 0:25)
 
-In order to create a new project and to get our development environment setup, we are going to use the Terminal command `create-react-app`. It will create a new folder in your current directory for the in-class application...
-
-<!-- AM: Should they be naming it hello world? Or something related to the blog they'll be making later? -->
+In order to create a new project and to get our development environment setup, we are going to use the Terminal command `create-react-app`. It will create a new folder in your current directory for the in-class application.
 
 ```bash
 $ npm i -g create-react-app
-$ create-react-app helloworld
-$ cd helloworld
+$ create-react-app blog-app
+$ cd blog-app
 $ npm run start
 ```
 
-> We can now view the app at `http://localhost:3000`
+> Here you will begin setting up a blog app that you will continue working on during this lesson's exercises. For demonstration purposes, I will be creating a simple "hello world" app.
+
+After running `$ npm run start`, we can view the app at `http://localhost:3000`
 
 `create-react-app` provides us with all the necessary tools and configuration necessary to start writing React. `npm run start` refers to an included script that starts up the development server.
 
@@ -130,8 +130,6 @@ What does a component look like? Let's start with a simple "Hello World" example
 
 To start, in our `/src/App.js` file, let's remove the contents and in its place add this component definition...
 
-<!-- AM: Have they seen "import" before? -->
-
 ```js
 // bring in React and Component instance from react
 import React, {Component} from 'react'
@@ -155,7 +153,7 @@ Ok let's recap what's going on.
 #### What's that HTML doing in my Javascript?
 
 Often times we write out React components in **JSX**.
-* JSX is[an alternate Javascript syntax](http://blog.yld.io/2015/06/10/getting-started-with-react-and-node-js/#.V8eDk5MrJPN) that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
+* JSX is [an alternate Javascript syntax](http://blog.yld.io/2015/06/10/getting-started-with-react-and-node-js/#.V8eDk5MrJPN) that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
 * React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
 
 > React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
