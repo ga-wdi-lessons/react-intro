@@ -489,11 +489,10 @@ Let's implement `state` in our Blog by making `body` a mutable value.
 
 #### Bonus I
 
-Use a form to take in user input. The post body should change `onSubmit`.
-
-#### Bonus II
-
-Make it so that the post body changes as you type it into the form. This will make use of `onChange`.
+Use a form to take in user input.
+* The post body should be updated using a method that is triggered by `onSubmit`.
+* One option is to keep track of what the new input is going to be by triggering a method using `onChange` on the `<input>`
+* Another option is to pass an event object to the `onSubmit` method and traverse the DOM from `e.target` to find the `<input>` value.
 
 > **NOTE:** You're starting to mock Angular's two-way data binding!
 
