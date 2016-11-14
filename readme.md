@@ -35,45 +35,41 @@ React was born out of Facebook's frustration with the traditional MVC model and 
   * Re-rendering something meant re-rendering everything (or just a lot).
   * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
 
-> If you want to get a taste of what React's all about, [here's an introduction from React.js Conf 2015.](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510). Recommend starting around the 8:35 mark, and watching until 16:30 (you can probably skip to 9:30 to 11:57 )
+> If you want to get a taste of what React's all about, [here's an introduction from React.js Conf 2015](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510). Recommend starting around the 8:35 mark and watching until 16:30.
 
 ### React in MVC
 
-**React can be thought of as the "Views" layer.**
+React can be thought of as the "Views" layer.
 
 <details>
-  <summary>What is the role of a "view" in a front-end Javascript application?</summary>
+  <summary><strong>What is the role of a "view" in a front-end Javascript application?</strong></summary>
 
   > The visual template the user sees, populated with data from our models.
 
 </details>
 
-React can be used agnostically throughout your stack. It's role is just to use data to render a UI.
-* This means that React can also coexist with other Javascript frameworks. Let them handle the models and controllers, and have React sort out the views.
+React can be used agnostically throughout your stack. It's role is just to use data to render a UI. This means that React can also coexist with other Javascript frameworks. Let them handle the models and controllers, and have React sort out the views.
 
 ---
 
 ## Initial Setup (20 minutes / 0:25)
 
-In order to create a new project and to get our development environment setup, we are going to use Facebook's dev team's tool: `create-react-app`
-
-In your terminal, move into your `exercises` directory and run:
-
+In order to create a new project and to get our development environment setup, we are going to use the Terminal command `create-react-app`. It will create a new folder in your current directory for the in-class application.
 
 ```bash
 $ npm i -g create-react-app
-$ create-react-app helloworld
-$ cd helloworld
+$ create-react-app blog-app
+$ cd blog-app
 $ npm run start
 ```
 
-Now we can visit our application at `http://localhost:3000`.
+> Here you will begin setting up a blog app that you will continue working on during this lesson's exercises. For demonstration purposes, I will be creating a simple "hello world" app.
 
-Let's review what files were created by the generator.
+After running `$ npm run start`, we can view the app at `http://localhost:3000`
 
-Basically, `create-react-app` provides us with all the necessary tools and configuration necessary to start writing React. `npm run start`refers to an included script that starts up the development server.
+`create-react-app` provides us with all the necessary tools and configuration necessary to start writing React. `npm run start` refers to an included script that starts up the development server.
 
-Along with installing the necessary dependencies such as React, ReactDom, Babel, Webpack, it creates a initial app skeleton that looks like this:
+Along with installing the necessary dependencies such as React, ReactDom, Babel and Webpack, it creates a initial app skeleton that looks like this...
 
 ```bash
 ├──README.md
@@ -91,7 +87,7 @@ Along with installing the necessary dependencies such as React, ReactDom, Babel,
 
 Most of the important files and primarily where we will be working today are in the `/src` directory.
 
-If you finish up early, review and play with the code in `/src/App.js`, `/src/index.js`, and  `index.html`
+> If you finish up early, review and play with the code in `/src/App.js`, `/src/index.js` and `index.html`
 
 ---
 
@@ -124,7 +120,7 @@ Take a picture of your work and Slack it to the classroom channel before the exe
 
 The basic unit you'll be working with in ReactJS is a **component**.
 * It sounds like a simple word, but using "components" is a pretty different way of approaching web development.
-* Components can be thought of as functional elements that takes in data via `props` and a `state` -- more on those later -- and as a result produce a dynamic UI.
+* Components can be thought of as functional elements that takes in data and as a result produce a dynamic UI.
 
 Throughout class we have separated HTML, CSS and Javascript.
 * With components, the lines between those three become a bit blurry.
@@ -132,8 +128,7 @@ Throughout class we have separated HTML, CSS and Javascript.
 
 What does a component look like? Let's start with a simple "Hello World" example...
 
-To start, in our `/src/App.js` file, let's remove
-the contents and in its place add this component definition:
+To start, in our `/src/App.js` file, let's remove the contents and in its place add this component definition...
 
 ```js
 // bring in React and Component instance from react
@@ -158,7 +153,7 @@ Ok let's recap what's going on.
 #### What's that HTML doing in my Javascript?
 
 Often times we write out React components in **JSX**.
-* JSX is[an alternate Javascript syntax](http://blog.yld.io/2015/06/10/getting-started-with-react-and-node-js/#.V8eDk5MrJPN) that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
+* JSX is [an alternate Javascript syntax](http://blog.yld.io/2015/06/10/getting-started-with-react-and-node-js/#.V8eDk5MrJPN) that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
 * React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
 
 > React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
@@ -178,6 +173,8 @@ Every component has, at minimum, a render method. It generates a **Virtual DOM**
 ##### `export default Hello`
 This exposes the Hello class to other files which import from the App.js file. The `default` keyword means that any import that's name doesn't match a named export will default to this. Only one default is allowed per file.
 
+<!-- AM: Better way to phrase `default`? ^^ -->
+
 **Virtual DOM? How is that different from the usual DOM?**
 
 The Virtual DOM is a Javascript representation of the actual DOM.
@@ -191,9 +188,7 @@ The Virtual DOM is a Javascript representation of the actual DOM.
 
 > If you're interested in learning more about the Virtual DOM, [check this video out](https://www.youtube.com/watch?v=-DX3vJiqxm4).
 
-So we've created the template for our component. But how do we actually render it?
-
-Now, let's look at code for `/src/index.js` to load in our new component and render it on the DOM:
+So we've created the template for our component. Now let's use `/src/index.js` to load in our new component and render it on the DOM...
 
 ```js
 import React from 'react'
@@ -239,7 +234,7 @@ ReactDOM.render(
 )
 ```
 
-Then in our component definition, we have a reference to that data via as a property on the `props` object:
+Then in our component definition, we have a reference to that data via as a property on the `props` object...
 
 ```js
 class Hello extends Component {
@@ -255,13 +250,11 @@ In the above example, we replaced "world" with `{this.props.name}`.
 
 #### What are `.props`?
 
-Properties! Every component has `.props`.
+Properties! Every component has `.props`
 * Properties are immutable. That is, they cannot be changed while your program is running.
 * We define properties in development and pass them in as attributes to the JSX element in our `.render` method.
 
-We can create multiple properties for a component...
-
-First we can pass multiple arguments to our component when its rendered in `src/index.js`:
+First we can pass multiple properties to our component when its rendered in `src/index.js`..
 
 ```js
 import ReactDOM from `react-dom`
@@ -273,12 +266,11 @@ ReactDOM.render(
 )
 ```
 
-Then in our component definition we have access to both values:
+Then in our component definition we have access to both values...
 
 ```js
 class Hello extends Component {
   render () {
-    // can only return one top-level element
     return (
       <div>
         <h1>Hello {this.props.name}</h1>
@@ -298,9 +290,9 @@ class Hello extends Component {
 
 ---
 
-### Exercise: A Blog Post (20 minutes / 1:25)
+### You Do: A Blog Post (25 minutes / 1:30)
 
-> 15 minutes exercise. 5 minutes review.
+> 20 minutes exercise. 5 minutes review.
 
 Let's have some practice creating a React component from scratch. How about a blog post?
 * Create a `post` object literal in `src/App.js` that has the below properties.
@@ -315,20 +307,18 @@ Let's have some practice creating a React component from scratch. How about a bl
 
 ---
 
-### Nested Components (5 minutes / 1:30)
+### Nested Components (5 minutes / 1:35)
 
-**Q:** What problems did you encounter when trying to add multiple comments to your Post?
+#### Q: What problems did you encounter when trying to add multiple comments to your Post?
 
-* It would be a pain to have to explicitly define every comment inside of `<Post />`, especially if each comment itself had multiple properties.
+It would be a pain to have to explicitly define every comment inside of `<Post />`, especially if each comment itself had multiple properties.
 * This problem is a tell tale sign that our separation of concerns is being stretched, and its time to break things into a new component.
 
 We can nest Comment components within a Post component.
 * We create these comments the same way we did with posts: `extends Component` and `.render`
 * Then we can reference a comment using `<Comment />` inside of Post's render method.
 
-A nested component looks something like this. You're going to take a stab at setting them up in the next exercise...
-
-First, let's create a new file for our Comment component, `src/Comment.js`:
+Let's create a new file for our Comment component, `src/Comment.js`...
 
 ```js
 import React, {Component} from 'react'
@@ -346,7 +336,7 @@ class Comment extends Component {
 export default Comment
 ```
 
-Then in `src/App.js`, we need to load in our `Comment` component and render it inside of our `Post` component:
+Then in `src/App.js`, we need to load in our `Comment` component and render it inside of our `Post` component...
 
 ```js
 import React, { Component } from 'react';
@@ -379,7 +369,7 @@ export default Post;
 
 ---
 
-## Exercise: Add Nested Comments To Blog (15 minutes / 1:45)
+## You Do: Add Nested Comments To Blog (15 minutes / 1:50)
 
 > 10 minutes exercise. 5 minutes review.
 
@@ -395,18 +385,18 @@ export default Post;
 
 ---
 
-## Break (10 minutes / 1:55)
+## Break (10 minutes / 2:00)
 
 ---
 
-## State (10 minutes / 2:05)
+## State (10 minutes / 2:10)
 
 So we know about React properties, and how they relate to our component's data.
 * The thing is, `props` represent data that will be the same every time our component is rendered. What about data in our application that may change depending on user action?
 * That's where `state` comes in...
 
 Values stored in a component's state are mutable attributes.
-* Like properties, we can access state values using `this.state.val`.
+* Like properties, we can access state values using `this.state.val`
 * Setting up and modifying state is not as straightforward as properties. It involves explicitly declaring the mutation, and then defining methods to define how to update our state....
 
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
@@ -424,7 +414,6 @@ class Hello extends Component {
     }
   }
   render () {
-    // can only return one top-level element
     return (
       <div>
         <h1>Hello {this.props.name}</h1>
@@ -441,13 +430,15 @@ Ok, we set an initial state. But how do we go about changing it?
 * We need to set up some sort of trigger event to change our counter.
 
 <details>
-  <summary>
-    Let's do that via a button click event -- where should we initialize it?
-  </summary>
+  <summary><strong>
+    Let's do that via a button click event. Where should we initialize it?
+  </strong></summary>
 
   > In the return value of our Post's `render` method.
 
 </details>
+
+<!-- AM: Modify this question. They don't know that event listeners are passed in as attributes yet. -->
 
 ```js
 class Hello extends Component {
@@ -480,11 +471,10 @@ class Hello extends Component {
 
 Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
-* This is super important! Using React, we only change parts of the DOM that need to be changed. This has strong implications on performance.
 
 ---
 
-### Exercise: Implement State (20 minutes / 2:25)
+### Exercise: Implement State (20 minutes / 2:30)
 
 > 15 minutes exercise. 5 minutes review.
 
@@ -499,11 +489,10 @@ Let's implement `state` in our Blog by making `body` a mutable value.
 
 #### Bonus I
 
-Use a form to take in user input. The post body should change `onSubmit`.
-
-#### Bonus II
-
-Make it so that the post body changes as you type it into the form. This will make use of `onChange`.
+Use a form to take in user input.
+* The post body should be updated using a method that is triggered by `onSubmit`.
+* One option is to keep track of what the new input is going to be by triggering a method using `onChange` on the `<input>`
+* Another option is to pass an event object to the `onSubmit` method and traverse the DOM from `e.target` to find the `<input>` value.
 
 > **NOTE:** You're starting to mock Angular's two-way data binding!
 
@@ -511,7 +500,7 @@ Make it so that the post body changes as you type it into the form. This will ma
 
 ---
 
-## Closing (5 minutes / 2:30)
+## Closing
 
 ### What's Next?
 
