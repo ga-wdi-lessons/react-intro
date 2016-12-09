@@ -473,7 +473,7 @@ class Hello extends Component {
 }
 ```
 
-> Take a closer look at how this event is implemented. We use an attribute called `onClick` to define the behavior as to what happens when we click this particular button. As it's value we're passing in an anonymous function that invokes handleClick, a function defined on this component.
+> Take a closer look at how this event is implemented. We use an attribute called `onClick` to define the behavior as to what happens when we click this particular button. As it's value, we're passing in an anonymous function that invokes handleClick, a function defined on this component.
 
 Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
