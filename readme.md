@@ -91,11 +91,15 @@ Most of the important files and primarily where we will be working today are in 
 
 ---
 
-### Stop / Catch Up
+### Stop / Catch Up / Investigate
+
+Take some time and look at what's been generated. Specifically look in `App.js` and `index.js`/
 
 ---
 
 ## Components
+
+One of the snarky comments made about react when it was first open sourced was. "Rethinking established best practices". Traditionally we're used to a more MVC approach for separation of concerns. In react, we want to move towards more of a component based separation of concerns. When taking a look at Facebook, you could think of each status post as a mini-component in react. And a list of those updates, is a component that contains several of those mini-components. You could take that one step further and think of the Facebook app, as one giant component with several components within it. (Things like the list of status updates, the friends list, the header, etc...)
 
 ### You Do: Identifying Components (10 minutes / 0:35)
 
@@ -468,6 +472,8 @@ class Hello extends Component {
   }
 }
 ```
+
+> Take a closer look at how this event is implemented. We use an attribute called `onClick` to define the behavior as to what happens when we click this particular button. As it's value we're passing in an anonymous function that invokes handleClick, a function defined on this component.
 
 Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
