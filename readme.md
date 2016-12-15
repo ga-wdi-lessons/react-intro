@@ -299,7 +299,7 @@ class Hello extends Component {
 > 20 minutes exercise. 5 minutes review.
 
 Let's have some practice creating a React component from scratch. How about a blog post?
-* Create a `post` object literal in `src/App.js` that has the below properties.
+* Create a `post` object literal in `src/index.js` that has the below properties.
   1. `title`
   2. `author`
   3. `body`
