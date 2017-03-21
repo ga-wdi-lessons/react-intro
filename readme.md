@@ -261,6 +261,7 @@ Properties! Every component has `.props`
 First we can pass multiple properties to our component when its rendered in `src/index.js`..
 
 ```js
+import React from 'react';
 import ReactDOM from `react-dom`
 import Hello from './App.js'
 
