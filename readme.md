@@ -229,6 +229,7 @@ Our `Hello` component isn't too helpful. Let's make it more interesting.
 First, we pass in data wherever we are rendering our component, in this case in `src/index.js`:
 
 ```js
+import React from 'react'
 import ReactDOM from `react-dom`
 import Hello from './App.js'
 
