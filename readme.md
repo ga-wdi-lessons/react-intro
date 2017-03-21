@@ -232,7 +232,7 @@ First, we pass in data wherever we are rendering our component, in this case in 
 
 ```js
 import React from 'react'
-import ReactDOM from `react-dom`
+import ReactDOM from 'react-dom'
 import Hello from './App.js'
 
 ReactDOM.render(
@@ -265,7 +265,7 @@ First we can pass multiple properties to our component when its rendered in `src
 
 ```js
 import React from 'react';
-import ReactDOM from `react-dom`
+import ReactDOM from 'react-dom'
 import Hello from './App.js'
 
 ReactDOM.render(
