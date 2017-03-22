@@ -100,7 +100,7 @@ Take some time and look at what's been generated. Specifically look in `App.js` 
 
 ## Components
 
-One of the snarky comments made about react when it was first made open source was, "Rethinking established best practices". Traditionally we're used to a more MVC approach for separation of concerns. In react, we want to move towards more of a component based separation of concerns. When taking a look at Facebook, you could think of each status post as a mini-component in react. And a list of those updates, is a component that contains several of those mini-components. You could take that one step further and think of the Facebook app, as one giant component with several components within it. (Things like the list of status updates, the friends list, the header, etc..)
+One of the snarky comments made about React when it was first made open source was, "Rethinking established best practices". Traditionally we're used to a more MVC approach for separation of concerns. In React, we want to move towards more of a component based separation of concerns. When taking a look at Facebook, you could think of each status post as a mini-component in React. And a list of those updates, is a component that contains several of those mini-components. You could take that one step further and think of the Facebook app, as one giant component with several components within it. (Things like the list of status updates, the friends list, the header, etc..)
 
 ### You Do: Identifying Components (10 minutes / 0:35)
 
@@ -136,7 +136,7 @@ What does a component look like? Let's start with a simple "Hello World" example
 To start, in our `/src/App.js` file, let's remove the contents and in its place add this component definition..
 
 ```js
-// bring in React and Component instance from react
+// bring in React and Component instance from React
 import React, {Component} from 'react'
 
 // define our Hello component
