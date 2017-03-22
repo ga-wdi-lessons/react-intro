@@ -442,7 +442,7 @@ Ok, we set an initial state. But how do we go about changing it?
     Let's do that using a button click event. Where should we initialize it?
   </strong></summary>
 
-  > In the return value of our Post's `render` method.
+  > In the return value of our Hello's `render` method.
 
 </details>
 
