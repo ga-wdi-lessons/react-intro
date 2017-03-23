@@ -350,7 +350,6 @@ Then in `src/App.js`, we need to load in our `Comment` component and render it i
 import React, { Component } from 'react';
 // Load in Comment component
 import Comment from './Comment.js'
-import './App.css';
 
 
 class Post extends Component {
