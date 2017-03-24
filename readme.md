@@ -23,15 +23,16 @@
 
 React is a library used to craft modern day UI and create views for the front-end in web, client and native applications.
 
-> **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity, and readability.
+> **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity and readability.
 
 #### Some History
 
 The first thing most people hear about React is "Facebook uses it."
-* First used by Facebook in 2011. Then Instagram in 2012.
+* First used by Facebook in 2011.
+* Then Instagram in 2012.
 * Went open source in May 2013.
 
-React was born out of Facebook's frustration with the traditional MVC model and how...
+React was born out of Facebook's frustration with the traditional MVC model and how..
   * Re-rendering something meant re-rendering everything (or just a lot).
   * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
 
@@ -44,11 +45,11 @@ React can be thought of as the "Views" layer.
 <details>
   <summary><strong>What is the role of a "view" in a front-end Javascript application?</strong></summary>
 
-  > The visual template the user sees, populated with data from our models.
+  > The visual template the user sees, often populated with data from our models.
 
 </details>
 
-React can be used agnostically throughout your stack. It's role is just to use data to render a UI. This means that React can also coexist with other Javascript frameworks. Let them handle the models and controllers, and have React sort out the views.
+React can be used agnostically throughout your stack. It's role is just to use data to render a UI. This means that React can also co-exist with other Javascript frameworks. Let the other frameworks handle the models and controllers, and have React sort out the views.
 
 ---
 
@@ -69,7 +70,7 @@ After running `$ npm run start`, we can view the app at `http://localhost:3000`
 
 `create-react-app` provides us with all the necessary tools and configuration necessary to start writing React. `npm run start` refers to an included script that starts up the development server.
 
-Along with installing the necessary dependencies such as React, ReactDom, Babel and Webpack, it creates a initial app skeleton that looks like this...
+Along with installing the necessary dependencies such as React, ReactDom, Babel and Webpack, it creates an initial app skeleton that looks like this...
 
 ```bash
 ├──README.md
@@ -85,7 +86,7 @@ Along with installing the necessary dependencies such as React, ReactDom, Babel 
     └──  logo.svg
 ```
 
-Most of the important files and primarily where we will be working today are in the `/src` directory.
+Most of the important files, which are primarily the ones where we will be working today, are in the `/src` directory.
 
 > If you finish up early, review and play with the code in `/src/App.js`, `/src/index.js` and `index.html`
 
@@ -93,13 +94,13 @@ Most of the important files and primarily where we will be working today are in 
 
 ### Stop / Catch Up / Investigate
 
-Take some time and look at what's been generated. Specifically look in `App.js` and `index.js`/
+Take some time and look at what's been generated. Specifically look in `App.js` and `index.js`
 
 ---
 
 ## Components
 
-One of the snarky comments made about react when it was first open sourced was. "Rethinking established best practices". Traditionally we're used to a more MVC approach for separation of concerns. In react, we want to move towards more of a component based separation of concerns. When taking a look at Facebook, you could think of each status post as a mini-component in react. And a list of those updates, is a component that contains several of those mini-components. You could take that one step further and think of the Facebook app, as one giant component with several components within it. (Things like the list of status updates, the friends list, the header, etc...)
+One of the snarky comments made about React when it was first open sourced was. "Rethinking established best practices". Traditionally we're used to a more MVC approach for separation of concerns. In React, we want to move towards more of a component-based separation of concerns. When taking a look at Facebook, you could think of each status post as a mini-component in React. And a list of those updates, is a component that contains several of those mini-components. You could take that one step further and think of the Facebook app, as one giant component with several components within it. (Things like the list of status updates, the friends list, the header, etc...)
 
 ### You Do: Identifying Components (10 minutes / 0:35)
 
@@ -114,8 +115,6 @@ As you're drawing this out, think about the following questions...
 * Are there any components that share the same structure?
 * Of these similar components, what is different about them?
 
-Take a picture of your work and Slack it to the classroom channel before the exercise is over.
-
 ---
 
 ### I Do: Hello World - A Very Basic Component (10 minutes / 0:45)
@@ -124,7 +123,8 @@ Take a picture of your work and Slack it to the classroom channel before the exe
 
 The basic unit you'll be working with in ReactJS is a **component**.
 * It sounds like a simple word, but using "components" is a pretty different way of approaching web development.
-* Components can be thought of as functional elements that takes in data and as a result produce a dynamic UI.
+
+* Components can be thought of as functional elements that takes in data and as a result, produce a dynamic UI.
 
 Throughout class we have separated HTML, CSS and Javascript.
 * With components, the lines between those three become a bit blurry.
@@ -135,7 +135,7 @@ What does a component look like? Let's start with a simple "Hello World" example
 To start, in our `/src/App.js` file, let's remove the contents and in its place add this component definition...
 
 ```js
-// bring in React and Component instance from react
+// bring in React and Component instance from React
 import React, {Component} from 'react'
 
 // define our Hello component
@@ -152,12 +152,12 @@ class Hello extends Component {
 export default Hello
 ```
 
-Ok let's recap what's going on.
+Let's recap what's going on.
 
 #### What's that HTML doing in my Javascript?
 
 Often times we write out React components in **JSX**.
-* JSX is [an alternate Javascript syntax](http://blog.yld.io/2015/06/10/getting-started-with-react-and-node-js/#.V8eDk5MrJPN) that allows us to write code that strongly resembles HTML. It is eventually transpiled to lightweight JavaScript objects.
+* JSX is [a language that compiles to Javascipt](http://blog.yld.io/2015/06/10/getting-started-with-react-and-node-js/#.V8eDk5MrJPN) that allows us to write code that strongly resembles HTML. It is eventually compiled to lightweight JavaScript objects.
 * React then uses these objects to build out a "Virtual DOM" -- more on that in just a bit.
 
 > React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
@@ -175,7 +175,7 @@ Every component has, at minimum, a render method. It generates a **Virtual DOM**
 * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
 
 ##### `export default Hello`
-This exposes the Hello class to other files which import from the App.js file. The `default` keyword means that any import that's name doesn't match a named export will default to this. Only one default is allowed per file.
+This exposes the Hello class to other files which import from the App.js file. The `default` keyword means that any import that's name doesn't match a named export will automatically revert to this. Only one default is allowed per file.
 
 <!-- AM: Better way to phrase `default`? ^^ -->
 
@@ -192,7 +192,7 @@ The Virtual DOM is a Javascript representation of the actual DOM.
 
 > If you're interested in learning more about the Virtual DOM, [check this video out](https://www.youtube.com/watch?v=-DX3vJiqxm4).
 
-So we've created the template for our component. Now let's use `/src/index.js` to load in our new component and render it on the DOM...
+So we've created the template for our component. Now, let's use `/src/index.js` to load in our new component and render it on the DOM...
 
 ```js
 import React from 'react'
@@ -204,14 +204,14 @@ ReactDOM.render(
   document.getElementById('root')
 )
 ```
-
-> In place of `ReactDOM.render` some tutorials will use React.renderComponent, which has been phased out. Change outlined [here](http://bit.ly/1E81Whs).
+> In place of `ReactDOM.render` some tutorials will use React.renderComponent, which has been phased out. The change is outlined [here](http://bit.ly/1E81Whs).
 
 `ReactDOM.render` takes the Virtual DOM node created by `extends Component` and adds it to the actual DOM. It takes two arguments...
+
   1. The component.
   2. The DOM element we want to append it to.
 
-What language is `<Hello />` written in? **JSX.**
+What is `<Hello />` written in? **JSX.**
 * Similar to XML.
 * When we say `<Hello />`, in plain Javascript we are actually saying `React.DOM.div( null, "Hello world.")`
   * Basically, a string of React methods that create a virtual DOM node.
@@ -230,7 +230,7 @@ First, we pass in data wherever we are rendering our component, in this case in 
 
 ```js
 import React from 'react'
-import ReactDOM from `react-dom`
+import ReactDOM from 'react-dom'
 import Hello from './App.js'
 
 ReactDOM.render(
@@ -263,7 +263,7 @@ First we can pass multiple properties to our component when its rendered in `src
 
 ```js
 import React from 'react';
-import ReactDOM from `react-dom`
+import ReactDOM from 'react-dom'
 import Hello from './App.js'
 
 ReactDOM.render(
@@ -281,7 +281,7 @@ class Hello extends Component {
       <div>
         <h1>Hello {this.props.name}</h1>
         <p>You are {this.props.age} years old</p>
-      <div>
+      </div>
     )
   }
 }
@@ -298,7 +298,7 @@ class Hello extends Component {
 
 ### You Do: A Blog Post (25 minutes / 1:30)
 
-> 20 minutes exercise. 5 minutes review.
+> 20 Minutes Exercise. 5 Minutes Review.
 
 Let's have some practice creating a React component from scratch. How about a blog post?
 * Create a `post` object literal in `src/index.js` that has the below properties.
@@ -318,7 +318,7 @@ Let's have some practice creating a React component from scratch. How about a bl
 #### Q: What problems did you encounter when trying to add multiple comments to your Post?
 
 It would be a pain to have to explicitly define every comment inside of `<Post />`, especially if each comment itself had multiple properties.
-* This problem is a tell tale sign that our separation of concerns is being stretched, and its time to break things into a new component.
+* This problem is a tell tale sign that our separation of concerns is being stretched, and it's time to break things into a new component.
 
 We can nest Comment components within a Post component.
 * We create these comments the same way we did with posts: `extends Component` and `.render`
@@ -348,7 +348,6 @@ Then in `src/App.js`, we need to load in our `Comment` component and render it i
 import React, { Component } from 'react';
 // Load in Comment component
 import Comment from './Comment.js'
-import './App.css';
 
 
 class Post extends Component {
@@ -371,15 +370,15 @@ class Post extends Component {
 export default Post;
 ```
 
-> **Note**: We could put all of our code in one file, but it's considered a good practice to break components outs into different files to help practice separation of concerns. The only downside is we have to be extra conscious of remembering to **export / import** each component to where its rendered.
+> **Note**: We could put all of our code in one file, but it's considered a good practice to break components out into different files to help practice separation of concerns. The only downside is we have to be extra conscious of remembering to **export / import** each component to where it's rendered.
 
 ---
 
 ## You Do: Add Nested Comments To Blog (15 minutes / 1:50)
 
-> 10 minutes exercise. 5 minutes review.
+> 10 Minute Exercise. 5 Minute Review.
 
- Amend your `Post`'s render method to include reference to a variable, `comments`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `comments` some where inside the UI for a `Post`.
+ Amend your `Post`'s render method to include reference to a variable, `comments`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `comments` somewhere inside the UI for a `Post`.
 
 > **NOTE:** You can use `.map` in `Post`'s `render` method to avoid having to hard-code all your `Comment`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
 >
@@ -399,11 +398,11 @@ export default Post;
 
 So we know about React properties, and how they relate to our component's data.
 * The thing is, `props` represent data that will be the same every time our component is rendered. What about data in our application that may change depending on user action?
-* That's where `state` comes in...
+* That's where `state` comes in..
 
 Values stored in a component's state are mutable attributes.
 * Like properties, we can access state values using `this.state.val`
-* Setting up and modifying state is not as straightforward as properties. It involves explicitly declaring the mutation, and then defining methods to define how to update our state....
+* Setting up and modifying state is not as straightforward as properties. It involves explicitly declaring the mutation, and then defining methods to define how to update our state...
 
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
@@ -435,16 +434,10 @@ class Hello extends Component {
 Ok, we set an initial state. But how do we go about changing it?
 * We need to set up some sort of trigger event to change our counter.
 
-<details>
-  <summary><strong>
-    Let's do that via a button click event. Where should we initialize it?
-  </strong></summary>
-
-  > In the return value of our Post's `render` method.
-
-</details>
+Take a look at how this event is implemented. We use an attribute called `onClick` to define what happens when we click this particular button. As its value, we're passing in an anonymous function that invokes handleClick, a function defined on this component.
 
 <!-- AM: Modify this question. They don't know that event listeners are passed in as attributes yet. -->
+
 
 ```js
 class Hello extends Component {
@@ -475,16 +468,15 @@ class Hello extends Component {
 }
 ```
 
-> Take a closer look at how this event is implemented. We use an attribute called `onClick` to define the behavior as to what happens when we click this particular button. As it's value, we're passing in an anonymous function that invokes handleClick, a function defined on this component.
+Whenever we run `.setState`, our component mimics a diff against the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 
-Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
 
 ---
 
 ### Exercise: Implement State (20 minutes / 2:30)
 
-> 15 minutes exercise. 5 minutes review.
+> 15 Minute Exercise. 5 Minute Review.
 
 Let's implement `state` in our Blog by making `body` a mutable value.
 
