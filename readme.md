@@ -36,7 +36,7 @@ React was born out of Facebook's frustration with the traditional MVC model and 
   * Re-rendering something meant re-rendering everything (or just a lot).
   * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
 
-> If you want to get a taste of what React's all about, [here's an introduction from the 2015 React.js Conference](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510). Recommend starting around the 8:35 mark and watching until 16:30.
+> If you want to get a taste of what React's all about, [here's an introduction from React.js Conf 2015](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510). Recommend starting around the 8:35 mark and watching until 16:30.
 
 ### React in MVC
 
@@ -100,17 +100,17 @@ Take some time and look at what's been generated. Specifically look in `App.js` 
 
 ## Components
 
-One of the snarky comments made about react when it was first open sourced was. "Rethinking established best practices". Traditionally we're used to a more MVC approach for separation of concerns. In React, we want to move towards more of a component-based separation of concerns. When taking a look at Facebook, you could think of each status post as a mini-component in React. And a list of those updates, is a component that contains several of those mini-components. You could take that one step further and think of the Facebook app, as one giant component with several components within it. (Things like the list of status updates, the friends list, the header, etc...)
+One of the snarky comments made about React when it was first open sourced was. "Rethinking established best practices". Traditionally we're used to a more MVC approach for separation of concerns. In React, we want to move towards more of a component-based separation of concerns. When taking a look at Facebook, you could think of each status post as a mini-component in React. And a list of those updates, is a component that contains several of those mini-components. You could take that one step further and think of the Facebook app, as one giant component with several components within it. (Things like the list of status updates, the friends list, the header, etc...)
 
 ### You Do: Identifying Components (10 minutes / 0:35)
 
 > 5 minutes exercise. 5 minutes review.
 
-Break into pairs and take a look at CraigsList. Identify the visual "components" the website is comprised of. We suggest using markers to draw these out on your table! So something like this..
+Break into pairs and take a look at CraigsList. Identify the visual "components" the website is comprised of. We suggest using markers to draw these out on your table! So something like this...
 
 ![Component diagram](http://maketea.co.uk/images/2014-03-05-robust-web-apps-with-react-part-1/wireframe_deconstructed.png)
 
-As you're drawing this out, think about the following questions..
+As you're drawing this out, think about the following questions...
 * Where do you see "nested components"? Where do you not?
 * Are there any components that share the same structure?
 * Of these similar components, what is different about them?
@@ -130,9 +130,9 @@ Throughout class we have separated HTML, CSS and Javascript.
 * With components, the lines between those three become a bit blurry.
 * Instead, we organize our web apps according to small, reusable components that define their own content, presentation and behavior.
 
-What does a component look like? Let's start with a simple "Hello World" example..
+What does a component look like? Let's start with a simple "Hello World" example...
 
-To start, in our `/src/App.js` file, let's remove the contents and in its place add this component definition..
+To start, in our `/src/App.js` file, let's remove the contents and in its place add this component definition...
 
 ```js
 // bring in React and Component instance from React
@@ -162,7 +162,7 @@ Often times we write out React components in **JSX**.
 
 > React can be written without JSX. If you want to learn more, [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).  
 
-Let's break down the things we see here..
+Let's break down the things we see here...
 
 ##### `class Hello`
 This is the component we're creating. In this example, we are creating a "Hello" component.
@@ -206,7 +206,7 @@ ReactDOM.render(
 ```
 > In place of `ReactDOM.render` some tutorials will use React.renderComponent, which has been phased out. The change is outlined [here](http://bit.ly/1E81Whs).
 
-`ReactDOM.render` takes the Virtual DOM node created by `extends Component` and adds it to the actual DOM. It takes two arguments..
+`ReactDOM.render` takes the Virtual DOM node created by `extends Component` and adds it to the actual DOM. It takes two arguments...
 
   1. The component.
   2. The DOM element we want to append it to.
@@ -239,7 +239,7 @@ ReactDOM.render(
 )
 ```
 
-Then in our component definition, we have a reference to that data via as a property on the `props` object..
+Then in our component definition, we have a reference to that data via as a property on the `props` object...
 
 ```js
 class Hello extends Component {
@@ -272,7 +272,7 @@ ReactDOM.render(
 )
 ```
 
-Then in our component definition we have access to both values..
+Then in our component definition we have access to both values...
 
 ```js
 class Hello extends Component {
@@ -324,7 +324,7 @@ We can nest Comment components within a Post component.
 * We create these comments the same way we did with posts: `extends Component` and `.render`
 * Then we can reference a comment using `<Comment />` inside of Post's render method.
 
-Let's create a new file for our Comment component, `src/Comment.js`..
+Let's create a new file for our Comment component, `src/Comment.js`...
 
 ```js
 import React, {Component} from 'react'
@@ -342,7 +342,7 @@ class Comment extends Component {
 export default Comment
 ```
 
-Then in `src/App.js`, we need to load in our `Comment` component and render it inside of our `Post` component..
+Then in `src/App.js`, we need to load in our `Comment` component and render it inside of our `Post` component...
 
 ```js
 import React, { Component } from 'react';
@@ -370,7 +370,7 @@ class Post extends Component {
 export default Post;
 ```
 
-> **Note**: We could put all of our code in one file, but it's considered a good practice to break components out into different files to help practice separation of concerns. The only downside is we have to be extra conscious of remembering to **export / import** each component to where its rendered.
+> **Note**: We could put all of our code in one file, but it's considered a good practice to break components out into different files to help practice separation of concerns. The only downside is we have to be extra conscious of remembering to **export / import** each component to where it's rendered.
 
 ---
 
@@ -378,7 +378,7 @@ export default Post;
 
 > 10 Minute Exercise. 5 Minute Review.
 
- Amend your `Post`'s render method to include reference to a variable, `comments`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `comments` some where inside the UI for a `Post`.
+ Amend your `Post`'s render method to include reference to a variable, `comments`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `comments` somewhere inside the UI for a `Post`.
 
 > **NOTE:** You can use `.map` in `Post`'s `render` method to avoid having to hard-code all your `Comment`'s. Read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [here](http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/).
 >
@@ -402,7 +402,7 @@ So we know about React properties, and how they relate to our component's data.
 
 Values stored in a component's state are mutable attributes.
 * Like properties, we can access state values using `this.state.val`
-* Setting up and modifying state is not as straightforward as properties. It involves explicitly declaring the mutation, and then defining methods to define how to update our state..
+* Setting up and modifying state is not as straightforward as properties. It involves explicitly declaring the mutation, and then defining methods to define how to update our state...
 
 Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
@@ -410,7 +410,7 @@ Lets implement state in our earlier `Hello` example by incorporating a counter i
 class Hello extends Component {
   // when our component is initialized,
   // our constructor function is called
-  constructor () {
+  constructor (props) {
     // make call to parent class' (Component) constructor
     super()
     // define an initial state
@@ -434,7 +434,7 @@ class Hello extends Component {
 Ok, we set an initial state. But how do we go about changing it?
 * We need to set up some sort of trigger event to change our counter.
 
-Take a look at how this event is implemented. We use an attribute called `onClick` to define the behavior as to what happens when we click this particular button. As it's value, we're passing in an anonymous function that invokes handleClick, a function defined on this component.
+Take a look at how this event is implemented. We use an attribute called `onClick` to define what happens when we click this particular button. As its value, we're passing in an anonymous function that invokes handleClick, a function defined on this component.
 
 <!-- AM: Modify this question. They don't know that event listeners are passed in as attributes yet. -->
 
