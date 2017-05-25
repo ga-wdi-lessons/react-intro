@@ -21,9 +21,9 @@
 
 ### What is ReactJS?
 
-React is a library used to craft modern day UI and create views for the front-end in web, client and native applications.
+React is a JavaScript library used to craft modern day UI and views for the front-end in web applications.
 
-> **Selling Point:** By modeling small compatible components that focus on just rendering a view, we as developers can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity and readability.
+> **Selling Point:** By modeling small compatible components that focus on just rendering a view, we can move business logic out of the DOM, and therefore improve our app's performance, maintainability, modularity and readability.
 
 #### Some History
 
@@ -61,6 +61,7 @@ In order to create a new project and to get our development environment setup, w
 $ npm i -g create-react-app
 $ create-react-app blog-app
 $ cd blog-app
+$ atom .
 $ npm run start
 ```
 
@@ -87,8 +88,6 @@ Along with installing the necessary dependencies such as React, ReactDom, Babel 
 ```
 
 Most of the important files, which are primarily the ones where we will be working today, are in the `/src` directory.
-
-> If you finish up early, review and play with the code in `/src/App.js`, `/src/index.js` and `index.html`
 
 ---
 
