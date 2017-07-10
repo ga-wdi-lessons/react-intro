@@ -297,7 +297,6 @@ class Hello extends Component {
 
 ### You Do: A Blog Post (25 minutes / 1:30)
 
-> 20 Minutes Exercise. 5 Minutes Review.
 
 Let's have some practice creating a React component from scratch. How about a blog post?
 * Create a `post` object literal in `src/index.js` that has the below properties.
@@ -375,7 +374,6 @@ export default Post;
 
 ## You Do: Add Nested Comments To Blog (15 minutes / 1:50)
 
-> 10 Minute Exercise. 5 Minute Review.
 
  Amend your `Post`'s render method to include reference to a variable, `comments`, that is equal to the return value of generating multiple `<Comment />` elements. Make sure to pass in the `comment` body as an argument to each `Comment` component. Then render the `comments` somewhere inside the UI for a `Post`.
 
@@ -475,7 +473,6 @@ Whenever we run `.setState`, our component mimics a diff against the current DOM
 
 ### Exercise: Implement State (20 minutes / 2:30)
 
-> 15 Minute Exercise. 5 Minute Review.
 
 Let's implement `state` in our Blog by making `body` a mutable value.
 
