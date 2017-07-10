@@ -440,7 +440,7 @@ Take a look at how this event is implemented. We use an attribute called `onClic
 
 ```js
 class Hello extends Component {
-  constructor (props) {
+  constructor () {
     super()
     this.state = {
       counter: 0
