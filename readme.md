@@ -409,7 +409,7 @@ Lets implement state in our earlier `Hello` example by incorporating a counter i
 class Hello extends Component {
   // when our component is initialized,
   // our constructor function is called
-  constructor (props) {
+  constructor () {
     // make call to parent class' (Component) constructor
     super()
     // define an initial state
