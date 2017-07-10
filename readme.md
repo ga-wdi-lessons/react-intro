@@ -381,7 +381,9 @@ export default Post;
 >
 > **HINT I:** You should only have to return one `<Comment />` inside of `.map`.
 >
-> **HINT II:** Remember that whenever you write vanilla Javascript inside of JSX, you need to surround it with single brackets (`{}`).
+> **HINT II:** Each comment needs a key attribute to keep track of data passed as props. The key should be a unique identifier for each child component
+>
+> **HINT III:** Remember that whenever you write vanilla Javascript inside of JSX, you need to surround it with single brackets (`{}`).
 
 #### [Solution](https://github.com/ga-wdi-exercises/simple-react-blog/commit/d71120b727113d7f7d2305f9d2b91e6948c5dde3)
 
